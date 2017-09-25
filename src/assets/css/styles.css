@@ -1,3 +1,23 @@
 input {
   margin-bottom: 5px;
 }
+
+.navbar-default {
+  background-color: #3367b6;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-text {
+  color: white;
+}
+
+.navbar-default .glyphicon {
+  color: white;
+}
+
+body{
+  padding-top:70px;
+}

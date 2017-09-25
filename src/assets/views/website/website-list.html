@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no">
+
+  <meta charset="UTF-8">
+  <title>Website List</title>
+  <link rel="stylesheet"
+        href="../../vendors/bootstrap/dist/css/bootstrap.min.css"/>
+  <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+  <link rel="stylesheet" href="../../css/styles.css"/>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--adding the back glyphicon-->
+    <p class="navbar-text pull-left">
+      <a href="../user/profile.html" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Websites</b>
+      </a>
+    </p>
+
+    <!--add mark-->
+    <p class="navbar-text pull-right">
+      <a href="website-new.html" class="navbar-link">
+        <span class="glyphicon glyphicon-plus"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+  <div class="container-fluid">
+    <ul class="list-group">
+      <li class="list-group-item active">
+        <div class="row">
+          <div class="col-xs-9 col-sm-6 col-md-3">
+            Website Name
+          </div>
+          <div class="col-md-3 hidden-xs hidden-sm">
+            Created
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
+            Owner
+          </div>
+          <div class="col-xs-3">
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-xs-9 col-sm-6 col-md-3">
+            Address Book App
+          </div>
+          <div class="col-md-3 hidden-xs hidden-sm">
+            1/2/2017
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 hidden-xs">
+            Alice
+          </div>
+          <div class="col-xs-3">
+            <a class="pull-right" href="website-edit.html">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        Blogger
+        <a class="pull-right" href="website-edit.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+      <li class="list-group-item">
+        Blogging App
+        <a class="pull-right" href="website-edit.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+      <li class="list-group-item">
+        Script Testing App
+        <a class="pull-right" href="website-edit.html">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="../user/profile.html">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+</body>
+</html>
