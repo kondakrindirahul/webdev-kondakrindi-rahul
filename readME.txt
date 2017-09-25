@@ -1,3 +1,0 @@
-- I am a Computer Science Graduate student at Northeastern University. 
-- I have worked as Data Analyst Intern at Einsite, India.
-- This repository contains all the assignments and projects for CS5610 Web Development Fall 2017.

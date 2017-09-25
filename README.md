@@ -1,44 +1,8 @@
-# AngularFourMEANSeed
+# RAHUL KONDAKRINDI
 
-After you clone this repository and run "npm install"
-To start the project
-Open two terminals, One to start the front end, One to start the backend
+* *I'm a Computer Science graduate student at Northeastern University.* 
+* *I have previously worked as a Data Analyst Intern at Einsite, Hyderabad, India.*
+* *This repository contains the source code for all the assignments and projects of CS5610 Fall 2017 by Prof Jose Annunziato.*
+* *Link to the root of the hosted environment on Heroku* 
+*     (https://webdev-kondakrindi-rahul.herokuapp.com/)
 
-~ npm start
-
-
-~ nodemon server.js
-
-Front end will run on `http://localhost:4200/`
-Server will run on port 3100. Specified in server.js and in environment.ts files
-
-
-
-
-
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
