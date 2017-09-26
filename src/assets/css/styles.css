@@ -20,4 +20,23 @@ input {
 
 body{
   padding-top:70px;
+  padding-bottom:70px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.rk-widget .rk-toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: gray;
+  padding: 3px;
+  /* border-radius: 3px; */
+  border-bottom-left-radius: 10px;
+  opacity: 0.5;
+}
+
+.rk-widget .rk-content {
+  width: 100%;
 }
