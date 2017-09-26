@@ -5,7 +5,7 @@
   },
   "apps": [
     {
-      "root": "src",
+      "root": "assignment",
       "outDir": "dist",
       "assets": [
         "assets",
@@ -36,10 +36,10 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "assignment/tsconfig.app.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "assignment/tsconfig.spec.json"
     },
     {
       "project": "e2e/tsconfig.e2e.json"
