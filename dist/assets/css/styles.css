@@ -1,0 +1,42 @@
+input {
+  margin-bottom: 5px;
+}
+
+.navbar-default {
+  background-color: #3367b6;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-text {
+  color: white;
+}
+
+.navbar-default .glyphicon {
+  color: white;
+}
+
+body{
+  padding-top:70px;
+  padding-bottom:70px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.rk-widget .rk-toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: gray;
+  padding: 3px;
+  /* border-radius: 3px; */
+  border-bottom-left-radius: 10px;
+  opacity: 0.5;
+}
+
+.rk-widget .rk-content {
+  width: 100%;
+}
