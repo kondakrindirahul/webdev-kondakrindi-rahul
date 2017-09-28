@@ -3,7 +3,7 @@ input {
 }
 
 .navbar-default {
-  background-color: #3367b6;
+  background-color: darkorchid;
 }
 
 .navbar-default .navbar-brand {
@@ -27,14 +27,27 @@ a:hover {
   text-decoration: none;
 }
 
+.rk-navbar .glyphicon {
+  color: black;
+}
+
+.rk-navbar {
+  background-color: #e5e5e5;
+}
+
+.rk-navbar .navbar-brand {
+  color: gray;
+}
+
+
 .rk-widget .rk-toolbar {
   position: absolute;
-  right: 0px;
-  background-color: gray;
+  right: 15px;
+  background-color: white;
   padding: 3px;
   /* border-radius: 3px; */
   border-bottom-left-radius: 10px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .rk-widget .rk-content {
