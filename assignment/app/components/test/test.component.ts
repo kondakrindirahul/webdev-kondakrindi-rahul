@@ -15,7 +15,7 @@ export class TestComponent implements OnInit {
 
   alertMessage: Boolean = false;
   successMessage: Boolean = false;
-  message: String;
+  message: string;
   messages: any[] = [];
   ngOnInit() {
     this.findAllMessages();

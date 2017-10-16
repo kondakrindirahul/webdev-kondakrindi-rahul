@@ -1,0 +1,99 @@
+<nav class="navbar rk-navbar navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--adding the back glyphicon-->
+    <p class="navbar-text pull-left">
+      <a routerLink=""
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Widget Edit</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a routerLink=""
+         type="submit"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+
+<div class="container container-fluid">
+
+  <!--<form class="form-group"-->
+        <!--&lt;!&ndash;(ngSubmit) = "widgetheadingForm()"&ndash;&gt;-->
+        <!--#f="ngForm">-->
+
+    <label for="name">Name</label>
+    <input [(ngModel)]="name"
+           id="name"
+           type="text"
+           class="form-control"
+           placeholder="Name">
+           <!--ngModel-->
+           <!--required-->
+           <!--#name="ngModel">-->
+    <!--<span class="help-block" *ngIf="!name.valid-->
+                              <!--&& name.touched">-->
+          <!--Please enter widget name!-->
+        <!--</span>-->
+
+    <label for="text">Text</label>
+    <input [(ngModel)]="text"
+           id="text"
+           type="text"
+           class="form-control"
+           placeholder="Heading">
+           <!--ngModel-->
+           <!--required-->
+           <!--#text="ngModel">-->
+    <!--<span class="help-block" *ngIf="!name.valid-->
+                              <!--&& name.touched">-->
+          <!--Please enter Header text!-->
+        <!--</span>-->
+
+    <label for="size">Size</label>
+    <input [(ngModel)]="size"
+           id="size"
+           type="text"
+           class="form-control"
+           placeholder="Size">
+           <!--ngModel-->
+           <!--required-->
+           <!--#size="ngModel">-->
+    <!--<span class="help-block" *ngIf="!name.valid-->
+                              <!--&& name.touched">-->
+          <!--Please enter header size!-->
+        <!--</span>-->
+
+    <a class="btn btn-danger btn-block"
+       routerLink="">Delete</a>
+
+  <!--</form>-->
+
+</div>
+
+<!-- Footer -->
+<nav class="navbar rk-navbar navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+

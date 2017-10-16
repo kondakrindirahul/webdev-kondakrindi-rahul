@@ -1,0 +1,72 @@
+<nav class="navbar rk-navbar navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--adding the back glyphicon-->
+    <p class="navbar-text pull-left">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Choose Widget</b>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a routerLink="">
+        Header
+      </a>
+    </li>
+    <li class="list-group-item">
+      Label
+    </li>
+    <li class="list-group-item">
+      HTML
+    </li>
+    <li class="list-group-item">
+      Text Input
+    </li>
+    <li class="list-group-item">
+      Link
+    </li>
+    <li class="list-group-item">
+      Button
+    </li>
+    <li class="list-group-item">
+      <a routerLink="">
+        Image
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a routerLink="">
+        YouTube
+      </a>
+    </li>
+    <li class="list-group-item">
+      Data Table
+    </li>
+    <li class="list-group-item">
+      Repeater
+    </li>
+  </ul>
+</div>
+
+<!-- Footer -->
+<nav class="navbar rk-navbar navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/user/{{userId}}">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
