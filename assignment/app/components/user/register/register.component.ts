@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   username: string;
   password: string;
+  verify_password: string;
   errorFlag: boolean;
   errorMsg = 'Try registering with different username';
 
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
+    this.verify_password = this.registerForm.value.verify_password;
 
     const current_user = this.userService.findUserByCredentials(this.username, this.password);
     if(current_user == null) {
@@ -32,7 +34,8 @@ export class RegisterComponent implements OnInit {
       this.userService.createUser(new_user);
       this.router.navigate(['/user/', new_user._id]);
     }
-    else{
+
+    else {
       this.errorFlag = true;
     }
   }

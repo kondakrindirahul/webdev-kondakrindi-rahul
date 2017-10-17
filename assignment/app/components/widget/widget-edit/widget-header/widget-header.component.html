@@ -3,7 +3,7 @@
 
     <!--adding the back glyphicon-->
     <p class="navbar-text pull-left">
-      <a routerLink=""
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
@@ -18,8 +18,8 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a routerLink=""
-         type="submit"
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget"
+         (click)="updateHeader()"
          class="navbar-link">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
@@ -31,56 +31,32 @@
 
 <div class="container container-fluid">
 
-  <!--<form class="form-group"-->
-        <!--&lt;!&ndash;(ngSubmit) = "widgetheadingForm()"&ndash;&gt;-->
-        <!--#f="ngForm">-->
+  <label for="name">Name</label>
+  <input [(ngModel)]="name"
+         id="name"
+         type="text"
+         class="form-control"
+         placeholder="Name">
 
-    <label for="name">Name</label>
-    <input [(ngModel)]="name"
-           id="name"
-           type="text"
-           class="form-control"
-           placeholder="Name">
-           <!--ngModel-->
-           <!--required-->
-           <!--#name="ngModel">-->
-    <!--<span class="help-block" *ngIf="!name.valid-->
-                              <!--&& name.touched">-->
-          <!--Please enter widget name!-->
-        <!--</span>-->
 
-    <label for="text">Text</label>
-    <input [(ngModel)]="text"
-           id="text"
-           type="text"
-           class="form-control"
-           placeholder="Heading">
-           <!--ngModel-->
-           <!--required-->
-           <!--#text="ngModel">-->
-    <!--<span class="help-block" *ngIf="!name.valid-->
-                              <!--&& name.touched">-->
-          <!--Please enter Header text!-->
-        <!--</span>-->
+  <label for="text">Text</label>
+  <input [(ngModel)]="widget.text"
+         id="text"
+         type="text"
+         class="form-control"
+         placeholder="Heading">
 
-    <label for="size">Size</label>
-    <input [(ngModel)]="size"
-           id="size"
-           type="text"
-           class="form-control"
-           placeholder="Size">
-           <!--ngModel-->
-           <!--required-->
-           <!--#size="ngModel">-->
-    <!--<span class="help-block" *ngIf="!name.valid-->
-                              <!--&& name.touched">-->
-          <!--Please enter header size!-->
-        <!--</span>-->
 
-    <a class="btn btn-danger btn-block"
-       routerLink="">Delete</a>
+  <label for="size">Size</label>
+  <input [(ngModel)]="widget.size"
+         id="size"
+         type="text"
+         class="form-control"
+         placeholder="Size">
 
-  <!--</form>-->
+  <a class="btn btn-danger btn-block"
+     (click)="deleteHeader()"
+       routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget">Delete</a>
 
 </div>
 
@@ -88,7 +64,7 @@
 <nav class="navbar rk-navbar navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="">
+      <a routerLink="/user/{{userId}}">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

@@ -36,7 +36,11 @@
     <input placeholder="verify password"
            type="password"
            id="password"
-           class="form-control"/>
+           class="form-control"
+           name="verify_password"
+           ngModel
+           required
+           #verify_password="ngModel"/>
 
     <button class="btn btn-block btn-primary"
             type="submit"

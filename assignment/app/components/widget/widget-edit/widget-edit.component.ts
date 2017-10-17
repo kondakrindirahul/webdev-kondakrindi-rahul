@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService } from "../../../services/widget.service.client";
+import { Widget } from "../../../models/widget.model.client";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -17,7 +18,7 @@ export class WidgetEditComponent implements OnInit {
   // widget = {_id: '', widgetType: '',
   //   pageId: '', size: 0, text: '',
   //   width: '', url: ''};
-  widget = {};
+  widget: Widget;
 
   constructor(private activatedRoute: ActivatedRoute,
               private widgetService: WidgetService) { }

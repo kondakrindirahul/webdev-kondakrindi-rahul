@@ -3,23 +3,20 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { Widget } from "../models/widget.model.client";
 
 
 @Injectable()
 export class WidgetService {
 
-  widgets = [
-    { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": "2", "text": "GIZMODO"},
-    { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
-    { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-      "url": "http://lorempixel.com/400/200/"},
-    { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-    { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
-    { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-      "url": "https://youtu.be/AM2Ivdi9c4E" },
-
-    { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-
+  widgets: Widget[] = [
+    new Widget("123", "HEADING", "321", "2", "Gizmodo", "", ""),
+    new Widget("234", "HEADING", "321", "4", "Lorem Ipsum", "", ""),
+    new Widget("345", "IMAGE", "321", "", "", "100%", "http://lorempixel.com/400/200/"),
+    new Widget("456", "HTML", "321", "", "<p>Lorem ipsum</p>", "", ""),
+    new Widget("567", "HEADING", "321", "4", "Lorem Ipsum", "", ""),
+    new Widget("678", "YOUTUBE", "321", "", "", "100%", "https://youtu.be/AM2Ivdi9c4E"),
+    new Widget("789", "HTML", "321", "", "<p>Lorem ipsum</p>", "", "")
   ];
 
   api = {
@@ -31,8 +28,8 @@ export class WidgetService {
   };
 
   createWidget(pageId, widget) {
-    widget.pageId = pageId;
     this.widgets.push(widget);
+    return widget;
   }
 
   findWidgetsByPageId(pageId) {
@@ -55,13 +52,30 @@ export class WidgetService {
     for (let x = 0; x < this.widgets.length; x++) {
       const _widget = this.widgets[x];
       if (_widget._id === widgetId) {
-        this.widgets[x].pageId = widget.pageId;
+
+        if (_widget.widgetType == "HEADING") {
+          _widget.text = widget.text;
+          _widget.size = widget.size;
+        }
+
+        else if (_widget.widgetType === "IMAGE") {
+          _widget.text = widget.text;
+          _widget.url = widget.url;
+          _widget.width = widget.width;
+        }
+
+        else if (_widget.widgetType === "HEADING") {
+          _widget.url = widget.url;
+          _widget.width = widget.width;
+        }
+        this.widgets[x] = _widget;
+        break;
       }
     }
   }
 
   deleteWidget(widgetId) {
-    for (let x = 0; x <this.widgets.length; x++) {
+    for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
         this.widgets.splice(x, 1);
       }

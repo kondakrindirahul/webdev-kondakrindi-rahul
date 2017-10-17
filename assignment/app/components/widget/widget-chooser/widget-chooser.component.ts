@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService } from "../../../services/widget.service.client";
 import { ActivatedRoute } from "@angular/router";
+import { Widget } from "../../../models/widget.model.client";
 
 @Component({
   selector: 'app-widget-chooser',

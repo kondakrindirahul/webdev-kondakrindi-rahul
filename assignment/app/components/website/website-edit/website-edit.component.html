@@ -36,7 +36,8 @@
       </p>
       <p class="navbar-text pull-right">
         <a routerLink="/user/{{userId}}/website"
-           class="navbar-link">
+           class="navbar-link"
+           (click)="updateWebsite()">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
