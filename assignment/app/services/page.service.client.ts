@@ -15,6 +15,8 @@ export class PageService {
 
   constructor(private http: Http) {}
 
+  domain_url = environment.baseUrl;
+
   api = {
     'createPage'   : this.createPage,
     'findPageByWebsiteId' : this.findPageByWebsiteId,
@@ -24,7 +26,7 @@ export class PageService {
   };
 
   createPage(userId, websiteId, page) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page';
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page';
     return this.http.post(url, page)
       .map((response: Response) => {
         return response.json();
@@ -32,7 +34,7 @@ export class PageService {
   }
 
   findPageByWebsiteId(userId, websiteId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page';
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page';
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -40,7 +42,7 @@ export class PageService {
   }
 
   findPageById(userId, websiteId, pageId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -48,7 +50,7 @@ export class PageService {
   }
 
   updatePage(userId, websiteId, updatedpage) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + updatedpage._id;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + updatedpage._id;
     return this.http.put(url, updatedpage)
       .map((response: Response) => {
         return response.json();
@@ -57,7 +59,7 @@ export class PageService {
   }
 
   deletePage(userId, websiteId, pageId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
     return this.http.delete(url)
       .map((response: Response) => {
         return response.json();

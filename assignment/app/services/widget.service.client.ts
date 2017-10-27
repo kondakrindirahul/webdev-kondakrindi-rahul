@@ -18,15 +18,17 @@ export class WidgetService {
 
   constructor(private http: Http) {}
 
+  domain_url = environment.baseUrl;
+
   findAllWidgets() {
-    return this.http.get("http://localhost:3100/api/widget")
+    return this.http.get(this.domain_url + '/api/widget')
       .map((response: Response) => {
       return response.json();
       });
   }
 
   createWidget(userId, websiteId, pageId, widget) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map((response: Response) => {
         return response.json();
@@ -35,7 +37,7 @@ export class WidgetService {
 
 
   findWidgetsByPageId(userId, websiteId, pageId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -45,7 +47,7 @@ export class WidgetService {
 
 
   findWidgetById(userId, websiteId, pageId, widgetId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -54,39 +56,15 @@ export class WidgetService {
 
   updateWidget(userId, websiteId, pageId, updatedwidget) {
 
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + updatedwidget._id;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + updatedwidget._id;
     return this.http.put(url, updatedwidget)
       .map((response: Response) => {
         return response.json();
       });
-
-    // for (let x = 0; x < this.widgets.length; x++) {
-    //   const _widget = this.widgets[x];
-    //   if (_widget._id === widgetId) {
-    //
-    //     if (_widget.widgetType == "HEADING") {
-    //       _widget.text = widget.text;
-    //       _widget.size = widget.size;
-    //     }
-    //
-    //     else if (_widget.widgetType === "IMAGE") {
-    //       _widget.text = widget.text;
-    //       _widget.url = widget.url;
-    //       _widget.width = widget.width;
-    //     }
-    //
-    //     else if (_widget.widgetType === "HEADING") {
-    //       _widget.url = widget.url;
-    //       _widget.width = widget.width;
-    //     }
-    //     this.widgets[x] = _widget;
-    //     break;
-    //   }
-    // }
   }
 
   deleteWidget(userId, websiteId, pageId, widgetId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
     return this.http.delete(url)
       .map((response: Response) => {
         return response.json();

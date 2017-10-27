@@ -28,9 +28,11 @@ export class WebsiteService {
 
   constructor(private http: Http) {}
 
+  domain_url = environment.baseUrl;
+
   createWebsite(userId, website) {
 
-    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    const url = this.domain_url + '/api/user/' + userId + '/website';
     return this.http.post(url, website)
       .map((response: Response) => {
         return response.json();
@@ -38,7 +40,7 @@ export class WebsiteService {
   }
 
   findWebsitesByUser(userId) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    const url = this.domain_url + '/api/user/' + userId + '/website';
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -47,7 +49,7 @@ export class WebsiteService {
 
   findWebsiteById(userId, websiteId) {
 
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -55,7 +57,7 @@ export class WebsiteService {
   }
 
   updateWebsite(userId, updatedwebsite) {
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + updatedwebsite._id;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + updatedwebsite._id;
     return this.http.put(url, updatedwebsite)
       .map((response: Response) => {
         return response.json();
@@ -65,7 +67,7 @@ export class WebsiteService {
 
   deleteWebsite(userId, websiteId) {
 
-    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId;
+    const url = this.domain_url + '/api/user/' + userId + '/website/' + websiteId;
     return this.http.delete(url)
       .map((response: Response) => {
         return response.json();

@@ -16,6 +16,8 @@ export class UserService {
 
   constructor(private http: Http) {}
 
+  domain_url = environment.baseUrl;
+
   api = {
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById,
@@ -27,7 +29,7 @@ export class UserService {
 
 
   createUser(user) {
-    const url = 'http://localhost:3100/api/user/';
+    const url = this.domain_url + '/api/user/';
     return this.http.post(url, user)
       .map((response: Response) => {
         return response.json();
@@ -35,7 +37,7 @@ export class UserService {
   }
 
   findUserByCredentials(username, password) {
-    const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
+    const url = this.domain_url + '/api/user?username=' + username + '&password=' + password;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -43,7 +45,7 @@ export class UserService {
   }
 
   findUserById(userId) {
-    const url = 'http://localhost:3100/api/user/' + userId;
+    const url = this.domain_url + '/api/user/' + userId;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -52,7 +54,7 @@ export class UserService {
   }
 
   findUserByUsername(username) {
-    const url = 'http://localhost:3100/api/user?username=' + username;
+    const url = this.domain_url + '/api/user?username=' + username;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
@@ -60,7 +62,7 @@ export class UserService {
   }
 
   updateUser(userId, updateduser) {
-    const url = 'http://localhost:3100/api/user/' + userId;
+    const url = this.domain_url + '/api/user/' + userId;
     return this.http.put(url, updateduser)
       .map((response: Response) => {
         return response.json();
