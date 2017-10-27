@@ -27,6 +27,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetService } from "./services/widget.service.client";
+import { SafePipe } from "./components/widget/widget-list/safepipe";
 
 @NgModule({
   // Declare components here
@@ -48,7 +49,8 @@ import { WidgetService } from "./services/widget.service.client";
     WidgetChooserComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

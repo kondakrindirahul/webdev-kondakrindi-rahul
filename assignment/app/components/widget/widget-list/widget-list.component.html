@@ -76,10 +76,9 @@
         </div>
 
         <div *ngSwitchCase="'YOUTUBE'">
-          {{widget.url}}
           <iframe [style.width] = "widget.width"
                   height="315"
-                  [src]="widget.url">
+                  [src]="widget.url | safe">
           </iframe>
         </div>
       </div>
