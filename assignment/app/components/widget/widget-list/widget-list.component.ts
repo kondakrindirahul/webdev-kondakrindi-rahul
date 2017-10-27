@@ -22,14 +22,19 @@ export class WidgetListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params
-      .subscribe(
-        (params: any) => {
+      .subscribe((params: any) => {
           this.pageId = params['pid'];
           this.userId = params['userId'];
           this.websiteId = params['wid'];
+
+          this.widgetService.findWidgetsByPageId(this.userId, this.websiteId, this.pageId)
+            .subscribe((widgets) => {
+              this.widgets = widgets;
+            });
         }
       );
-    this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
   }
 
 }
+
+

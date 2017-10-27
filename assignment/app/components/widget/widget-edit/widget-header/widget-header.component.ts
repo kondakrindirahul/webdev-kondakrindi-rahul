@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { WidgetService } from "../../../../services/widget.service.client";
 import { Widget } from "../../../../models/widget.model.client";
 
@@ -19,17 +19,34 @@ export class WidgetHeaderComponent implements OnInit {
   widget: Widget;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   deleteHeader() {
-    if(this.widgetId) {
-      this.widgetService.deleteWidget(this.widgetId);
+    if (this.widgetId) {
+      this.widgetService
+        .deleteWidget(this.userId, this.websiteId, this.pageId, this.widgetId)
+        .subscribe((widget) => {
+          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        });
     }
   }
 
   updateHeader() {
-      this.widgetService.updateWidget(this.widgetId, this.widget);
+    if (this.widgetId) {
+      this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
+        .subscribe((widget) => {
+          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        });
     }
+    else{
+      this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
+        .subscribe((widget) => {
+          this.widget = widget;
+          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        });
+    }
+  }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -39,19 +56,19 @@ export class WidgetHeaderComponent implements OnInit {
           this.userId = params['userId'];
           this.websiteId = params['wid'];
           this.pageId = params['pid'];
-        }
-      );
-    if(this.widgetId){
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
-    }
-    else{
-      const iD = Math.random().toString();
-      const new_widget: Widget =
-        new Widget(iD, "HEADING", this.pageId, "", "", "", "");
-      this.widget = this.widgetService.createWidget(this.pageId, new_widget);
-      this.widgetId = this.widget._id;
-    }
+        });
 
+    if (this.widgetId) {
+      this.widgetService
+        .findWidgetById(this.userId, this.websiteId, this.pageId, this.widgetId)
+        .subscribe((widget) => {
+          this.widget = widget;
+        });
+    }
+    else {
+      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: ""};
+      this.widget.widgetType = "HEADING";
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { PageService } from "../../../services/page.service.client";
 import { Page } from "../../../models/page.model.client";
 
@@ -19,15 +19,8 @@ export class PageEditComponent implements OnInit {
   page: Page;
 
   constructor(private pageService: PageService,
-              private activatedRoute: ActivatedRoute) { }
-
-  updatePage(){
-    this.pageService.updatePage(this.pageId, this.page);
-  }
-
-  deletePage(){
-    this.pageService.deletePage(this.pageId);
-  }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -35,10 +28,40 @@ export class PageEditComponent implements OnInit {
         this.pageId = params['pid'];
         this.websiteId = params['wid'];
         this.userId = params['userId'];
+
+        this.pageService.findPageByWebsiteId(this.userId, this.websiteId)
+          .subscribe((pages) => {
+            this.pages = pages;
+          });
+
+        this.pageService.findPageById(this.userId, this.websiteId, this.pageId)
+          .subscribe((page) => {
+            this.page = page;
+          });
+      }
+      );
+  }
+
+  updatePage(pageId){
+    this.pageService.findPageById(this.userId, this.websiteId, pageId)
+      .subscribe((page) => {
+        this.page = page;
       });
 
-    this.page = this.pageService.findPageById(this.pageId);
-    this.pages = this.pageService.findPageByWebsiteId(this.websiteId);
+    const updatedPage = this.page;
+    this.pageService.updatePage(this.userId, this.websiteId, updatedPage)
+      .subscribe((pages) => {
+        this.pages = pages;
+        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+      });
+  }
+
+  deletePage(pageId){
+    this.pageService.deletePage(this.userId, this.websiteId, pageId)
+      .subscribe((pages) => {
+        this.pages = pages;
+        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+      });
   }
 
 }

@@ -25,14 +25,16 @@ export class WebsiteNewComponent implements OnInit {
   errorMsg: 'Invalid username or description ! ';
 
   constructor(private websiteService: WebsiteService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   websitenew() {
-    if(this.name){
-      let random_id = Math.random().toString();
-      const new_website: Website = new Website(random_id, this.name, this.userId, this.description);
-      this.websiteService.createWebsite(this.userId, new_website);
-    }
+    const website: Website = new Website('', this.name, this.userId, this.description);
+    this.websiteService.createWebsite(this.userId, website)
+      .subscribe((websites) => {
+        // this.websites = websites;
+        this.router.navigate(['user', this.userId, 'website']);
+      });
   }
 
   ngOnInit() {
@@ -40,11 +42,14 @@ export class WebsiteNewComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.userId = params['userId'];
+
+          this.websiteService
+            .findWebsitesByUser(this.userId)
+            .subscribe((websites) => {
+              this.websites = websites;
+            });
         }
       );
-
-    this.websites =
-      this.websiteService.findWebsitesByUser(this.userId);
   }
 
 }

@@ -19,8 +19,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget"
-         class="navbar-link"
+      <a class="navbar-link"
          (click)="updateImage()">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
@@ -32,25 +31,29 @@
 
 <div class="container container-fluid">
 
-  <label for="name">Name</label>
+  <label>Name</label>
   <input type="text"
          class="form-control"
          placeholder="Image Name">
 
 
-  <label for="text">Text</label>
+  <label>Text</label>
   <input type="text"
          class="form-control"
          placeholder="text">
 
   <label for="url">URL</label>
   <input [(ngModel)]="widget.url"
+         name="url"
+         id="url"
          type="url"
          class="form-control"
          placeholder="Image URL">
 
   <label for="width">Width</label>
   <input [(ngModel)]="widget.width"
+         name="width"
+         id="width"
          type="text"
          class="form-control"
          placeholder="Width">
@@ -63,7 +66,6 @@
   <a class="btn btn-primary btn-block">Upload Image</a>
 
   <a class="btn btn-danger btn-block"
-     routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget"
      (click)="deleteImage()">Delete</a>
 
 </div>

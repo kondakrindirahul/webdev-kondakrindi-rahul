@@ -35,9 +35,8 @@
         </a>
       </p>
       <p class="navbar-text pull-right">
-        <a routerLink="/user/{{userId}}/website"
-           class="navbar-link"
-           (click)="updateWebsite()">
+        <a class="navbar-link"
+           (click)="updateWebsite(websiteId)">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -83,10 +82,10 @@
       </textarea>
 
       <a class="btn btn-danger btn-block"
-         routerLink="/user/{{userId}}/website"
-         (click)="deleteWebsite()">
+         (click)="deleteWebsite(website._id)">
         Delete
       </a>
+
     </div>
   </div>
 </div>

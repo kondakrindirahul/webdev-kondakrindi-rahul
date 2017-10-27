@@ -1,66 +1,54 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 
   <div class="container-fluid">
-
     <!--heading on the nav bar-->
     <p class="navbar-header pull-left">
-      <a routerLink="/profile"
-         class="navbar-brand thick">
+      <a class="navbar-brand thick">
         <b>Profile</b>
       </a>
     </p>
-
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a routerLink="/profile"
-         class="navbar-link">
+      <a class="navbar-link"
+         (click)="updateProfile()">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
-
   </div>
 </nav>
 
 
 <div class="container container-fluid">
-
   <form>
     <div class="form-group">
       <label>Username</label>
-      <input type="text"
-             class="form-control"
+      <input [(ngModel)]="user.username"
              name="username"
-             value="{{user.username}}"
-             [(ngModel)]="username">
+             type="text"
+             class="form-control"
+             placeholder="alice">
     </div>
-
-
     <div class="form-group">
       <label>Email address</label>
       <input type="text"
              class="form-control"
              placeholder="alice.wonderland@unicorn.com">
     </div>
-
-
     <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text"
+      <label>First Name</label>
+      <input [(ngModel)]="user.firstName"
+             name="firstName"
+             type="text"
              class="form-control"
-             name=""
-             id="first-name"
-             value="{{user.firstName}}"
-             [(ngModel)]="firstname">
+             placeholder="Alice">
     </div>
-
-
     <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text"
+      <label>Last Name</label>
+      <input [(ngModel)]="user.lastName"
+             name="lastName"
+             type="text"
              class="form-control"
-             id="last-name"
-             value="{{user.lastName}}"
-             [(ngModel)]="lastname">
+             placeholder="Wonderland">
     </div>
   </form>
 

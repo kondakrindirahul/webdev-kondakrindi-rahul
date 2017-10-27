@@ -4,6 +4,10 @@
        class="alert alert-danger">
     {{errorMsg}}
   </div>
+  <div *ngIf="errorFlag2"
+       class="alert alert-danger">
+    {{errorMsg2}}
+  </div>
 
   <h1>Register</h1>
 
@@ -29,7 +33,7 @@
            required
            #password="ngModel"/>
     <span class="help-block"
-          *ngIf="!username.valid && username.touched">
+          *ngIf="!password.valid && password.touched">
       Please enter password!
    </span>
 
@@ -41,6 +45,10 @@
            ngModel
            required
            #verify_password="ngModel"/>
+    <span class="help-block"
+          *ngIf="!verify_password.valid && verify_password.touched">
+      Please enter password!
+   </span>
 
     <button class="btn btn-block btn-primary"
             type="submit"
@@ -48,9 +56,6 @@
       Register
     </button>
 
-  <!--<a routerLink="/profile" button class="btn btn-primary btn-block">-->
-  <!--Register-->
-  <!--</a>-->
     <a routerLink="/login" button
        class="btn btn-danger btn-block">
       Cancel

@@ -16,8 +16,11 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
   verify_password: string;
+  user: User;
   errorFlag: boolean;
+  errorFlag2: boolean
   errorMsg = 'Try registering with different username';
+  errorMsg2 = 'The Passwords do not match';
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -27,17 +30,25 @@ export class RegisterComponent implements OnInit {
     this.password = this.registerForm.value.password;
     this.verify_password = this.registerForm.value.verify_password;
 
-    const current_user = this.userService.findUserByCredentials(this.username, this.password);
-    if(current_user == null) {
-      let random_id = Math.random().toString();
-      const new_user: User = new User(random_id, this.username, this.password, this.username, '');
-      this.userService.createUser(new_user);
-      this.router.navigate(['/user/', new_user._id]);
+    if (this.password !== this.verify_password) {
+      this.errorFlag2 = true;
+      return;
     }
 
-    else {
-      this.errorFlag = true;
-    }
+    this.userService.findUserByCredentials(this.username, this.password).
+    subscribe((current_user: User) => {
+      if (current_user._id == null) {
+        const new_user: User = new User('', this.username, this.password, '', '');
+        this.userService.createUser(new_user)
+          .subscribe((user) => {
+            // this.user = user;
+            this.router.navigate(['/user/', user._id]);
+          });
+      }
+      else {
+        this.errorFlag = true;
+      }
+    });
   }
 
   ngOnInit() {

@@ -16,11 +16,10 @@ export class WebsiteEditComponent implements OnInit {
 
   websiteId: string;
   website: Website;
-  // websitename: string;
-  // description: string;
 
   constructor(private websiteService: WebsiteService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -28,22 +27,43 @@ export class WebsiteEditComponent implements OnInit {
         (params: any) => {
           this.userId = params['userId'];
           this.websiteId = params['wid'];
+
+          this.websiteService
+            .findWebsitesByUser(this.userId)
+            .subscribe((websites) => {
+              this.websites = websites;
+            });
+
+          this.websiteService
+            .findWebsiteById(this.userId, this.websiteId)
+            .subscribe((website) => {
+              this.website = website;
+            });
         }
       );
 
-    this.websites =
-      this.websiteService.findWebsitesByUser(this.userId);
-    this.website =
-      this.websiteService.findWebsiteById(this.websiteId);
-
   }
 
-  updateWebsite(){
-    this.websiteService.updateWebsite(this.websiteId,this.website);
+  updateWebsite(websiteId) {
+    this.websiteService.findWebsiteById(this.userId, websiteId)
+      .subscribe((website) => {
+      this.website = website;
+      });
+
+    const updatedWebsite = this.website;
+    this.websiteService.updateWebsite(this.userId, updatedWebsite)
+      .subscribe((websites) => {
+        this.websites = websites;
+        this.router.navigate(['user', this.userId, 'website']);
+      });
   }
 
-  deleteWebsite(){
-    this.websiteService.deleteWebsite(this.websiteId);
+  deleteWebsite(websiteId) {
+    this.websiteService.deleteWebsite(this.userId, websiteId)
+      .subscribe((websites) => {
+        this.websites = websites;
+        this.router.navigate(['user', this.userId, 'website']);
+      });
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { PageService } from "../../../services/page.service.client";
 import { Page } from "../../../models/page.model.client";
 
@@ -24,7 +24,8 @@ export class PageNewComponent implements OnInit {
   errorMsg: 'Invalid username or password ! ';
 
   constructor(private pageService: PageService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -32,19 +33,23 @@ export class PageNewComponent implements OnInit {
         (params: any) => {
           this.websiteId = params['wid'];
           this.userId = params['userId'];
+          this.pageService
+            .findPageByWebsiteId(this.userId, this.websiteId)
+            .subscribe((pages) => {
+              this.pages = pages;
+            });
         }
       );
-    this.pages =
-      this.pageService.findPageByWebsiteId(this.websiteId);
   }
 
 
   pagenew() {
-    if (this.name) {
-      let random_id = Math.random().toString();
-      const newpage: Page = new Page(random_id, this.name, this.websiteId, this.title);
-      this.pageService.createPage(this.websiteId, newpage);
-    }
+    const page: Page = new Page('', this.name, this.websiteId, this.title);
+    this.pageService.createPage(this.userId, this.websiteId, page)
+      .subscribe((pages) => {
+        this.pages = pages;
+        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+      });
   }
 
 }

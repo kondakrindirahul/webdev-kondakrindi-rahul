@@ -13,6 +13,8 @@ export class PageService {
     new Page("543", "Post 3", "456", "Lorem")
   ];
 
+  constructor(private http: Http) {}
+
   api = {
     'createPage'   : this.createPage,
     'findPageByWebsiteId' : this.findPageByWebsiteId,
@@ -21,50 +23,45 @@ export class PageService {
     'deletePage' : this.deletePage
   };
 
-  createPage(websiteId, page) {
-    page.websiteId = websiteId;
-    this.pages.push(page);
+  createPage(userId, websiteId, page) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page';
+    return this.http.post(url, page)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  findPageByWebsiteId(websiteId) {
-    let page_array = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        page_array.push(this.pages[x]);
-      }
-    }
-    return page_array;
+  findPageByWebsiteId(userId, websiteId) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page';
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  findPageById(pageId) {
-    return this.pages.find(function (page) {
-      return page._id === pageId;
-    });
+  findPageById(userId, websiteId, pageId) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  findPageByName(pageName) {
-    return this.pages.find(function (page) {
-      return page.name === pageName;
-    });
+  updatePage(userId, websiteId, updatedpage) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + updatedpage._id;
+    return this.http.put(url, updatedpage)
+      .map((response: Response) => {
+        return response.json();
+      });
+
   }
 
-
-  updatePage(pageId, page) {
-    for (let x = 0; x < this.pages.length; x++) {
-      const _page = this.pages[x];
-      if (_page._id === pageId) {
-        this.pages[x].name = page.name;
-        this.pages[x].title = page.title;
-      }
-    }
-  }
-
-  deletePage(pageId) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        this.pages.splice(x, 1);
-      }
-    }
+  deletePage(userId, websiteId, pageId) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId + '/page/' + pageId;
+    return this.http.delete(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
 }

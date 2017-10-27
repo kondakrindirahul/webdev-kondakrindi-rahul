@@ -22,11 +22,15 @@ export class WebsiteListComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.userId = params['userId'];
+
+          this.websiteService
+            .findWebsitesByUser(this.userId)
+            .subscribe((websites) => {
+              this.websites = websites;
+            });
         }
       );
 
-    this.websites =
-      this.websiteService.findWebsitesByUser(this.userId);
   }
 
 }

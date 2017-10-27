@@ -22,54 +22,54 @@ export class WebsiteService {
     'createWebsite'   : this.createWebsite,
     'findWebsitesByUser' : this.findWebsitesByUser,
     'findWebsiteById' : this.findWebsiteById,
-    'findWebsiteByName' : this.findWebsiteByName,
     'updateWebsite' : this.updateWebsite,
     'deleteWebsite' : this.deleteWebsite
   };
 
+  constructor(private http: Http) {}
+
   createWebsite(userId, website) {
-    website.developerId = userId;
-    this.websites.push(website);
+
+    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    return this.http.post(url, website)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
   findWebsitesByUser(userId) {
-    const website_array = [];
-    for (let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x].developerId === userId) {
-        website_array.push(this.websites[x]);
-      }
-    }
-    return website_array;
+    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  findWebsiteById(websiteId) {
-    return this.websites.find(function (website) {
-      return website._id === websiteId;
-    });
+  findWebsiteById(userId, websiteId) {
+
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId;
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  findWebsiteByName(websiteName) {
-    return this.websites.find(function (website) {
-      return website.name === websiteName;
-    })
+  updateWebsite(userId, updatedwebsite) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + updatedwebsite._id;
+    return this.http.put(url, updatedwebsite)
+      .map((response: Response) => {
+        return response.json();
+      });
+
   }
 
-  updateWebsite(websiteId, website) {
-    for (let x = 0; x < this.websites.length; x++) {
-      const _website = this.websites[x];
-      if (_website._id === websiteId) {
-        this.websites[x].name = website.name;
-        this.websites[x].description = website.description;
-      }
-    }
-  }
+  deleteWebsite(userId, websiteId) {
 
-  deleteWebsite(websiteId) {
-    for (let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x]._id === websiteId) {
-        this.websites.splice(x, 1);
-      }
-    }
+    const url = 'http://localhost:3100/api/user/' + userId + '/website/' + websiteId;
+    return this.http.delete(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
 }

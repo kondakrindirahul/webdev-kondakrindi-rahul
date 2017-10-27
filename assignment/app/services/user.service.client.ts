@@ -14,6 +14,8 @@ export class UserService {
     new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
   ];
 
+  constructor(private http: Http) {}
+
   api = {
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById,
@@ -24,38 +26,45 @@ export class UserService {
   };
 
 
-  createUser(user: any) {
-    //user._id = Math.random();
-    this.users.push(user);
-    return user;
+  createUser(user) {
+    const url = 'http://localhost:3100/api/user/';
+    return this.http.post(url, user)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
   findUserByCredentials(username, password) {
-    return this.users.find(function (user) {
-      return user.username === username && user.password === password;
+    const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
     });
   }
 
   findUserById(userId) {
-    return this.users.find(function (user) {
-      return user._id === userId;
-    });
+    const url = 'http://localhost:3100/api/user/' + userId;
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
+
   }
 
   findUserByUsername(username) {
-    return this.users.find(function (user) {
-      return user.username === username;
-    });
+    const url = 'http://localhost:3100/api/user?username=' + username;
+    return this.http.get(url)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
-  updateUser(userId, user) {
-    for (let x = 0; x < this.users.length; x++) {
-      const _user = this.users[x];
-      if (_user._id === userId) {
-        this.users[x].firstName = user.firstName;
-        this.users[x].lastName = user.lastName;
-      }
-    }
+  updateUser(userId, updateduser) {
+    const url = 'http://localhost:3100/api/user/' + userId;
+    return this.http.put(url, updateduser)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
   deleteUser(userId) {

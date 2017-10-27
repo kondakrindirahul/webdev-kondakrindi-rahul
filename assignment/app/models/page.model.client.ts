@@ -3,6 +3,8 @@ export class Page {
   name: string;
   websiteId: string;
   title: string;
+  val: number
+  val2: Date
 
   constructor(_id, name, websiteId, title) {
     this._id = _id;

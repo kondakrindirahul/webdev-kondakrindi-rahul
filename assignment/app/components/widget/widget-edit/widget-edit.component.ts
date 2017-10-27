@@ -14,10 +14,6 @@ export class WidgetEditComponent implements OnInit {
   pageId: string;
   websiteId: string;
   userId: string;
-  // widgets = [{}];
-  // widget = {_id: '', widgetType: '',
-  //   pageId: '', size: 0, text: '',
-  //   width: '', url: ''};
   widget: Widget;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -25,20 +21,19 @@ export class WidgetEditComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params
-      .subscribe(
-        (params: any) => {
+      .subscribe((params: any) => {
           this.pageId = params['pid'];
           this.userId = params['userId'];
           this.websiteId = params['wid'];
           this.widgetId = params['wgid'];
+
+          this.widgetService
+            .findWidgetById(this.userId, this.websiteId, this.pageId, this.widgetId)
+            .subscribe((widget) => {
+              this.widget = widget;
+            });
         }
       );
-
-    this.widget =
-      this.widgetService.findWidgetById(this.widgetId);
-
-    // this.widgets =
-    //   this.widgetService.findWidgetsByPageId(this.pageId)
   }
 
 }

@@ -1,7 +1,3 @@
-/**
- * Created by sesha on 6/2/17.
- */
-
 // Get the dependencies
 
 const express = require('express');
@@ -14,12 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
-
-
 
 // CORS
 app.use(function(req, res, next) {
@@ -44,12 +36,17 @@ serverSide(app);
 
 
 
-// For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// // For Build: Catch all other routes and return the index file -- BUILDING
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
+
+var hello = require("./hello");
+hello(app);
+
+require("./server/app")(app);
 
 
-server.listen( port , () => console.log('Running'));
+server.listen( port );
 
 
