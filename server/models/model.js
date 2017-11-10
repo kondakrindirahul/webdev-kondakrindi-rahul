@@ -11,6 +11,6 @@ if(process.env.MLAB_USERNAME_WEBDEV) {
 
 // model.js is responsible for connecting to the database
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/cs5610', { useMongoClient: true});
+var db = mongoose.connect(connectionString, { useMongoClient: true});
 module.exports = db;
 
