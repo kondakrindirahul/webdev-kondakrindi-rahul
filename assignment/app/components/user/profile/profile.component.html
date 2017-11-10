@@ -21,8 +21,9 @@
 <div class="container container-fluid">
   <form>
     <div class="form-group">
-      <label>Username</label>
+      <label for="username">Username</label>
       <input [(ngModel)]="user.username"
+             id="username"
              name="username"
              type="text"
              class="form-control"
@@ -35,16 +36,18 @@
              placeholder="alice.wonderland@unicorn.com">
     </div>
     <div class="form-group">
-      <label>First Name</label>
+      <label for="first">First Name</label>
       <input [(ngModel)]="user.firstName"
+             id="first"
              name="firstName"
              type="text"
              class="form-control"
              placeholder="Alice">
     </div>
     <div class="form-group">
-      <label>Last Name</label>
+      <label for="last">Last Name</label>
       <input [(ngModel)]="user.lastName"
+             id="last"
              name="lastName"
              type="text"
              class="form-control"

@@ -68,7 +68,7 @@ export class WidgetYoutubeComponent implements OnInit {
         });
     }
     else {
-      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: ""};
+      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: "", rows: null, name: "", placeholder: "", formatted: false};
       this.widget.widgetType = "YOUTUBE";
     }
   }

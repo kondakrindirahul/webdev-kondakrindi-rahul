@@ -28,6 +28,11 @@ import { WidgetImageComponent } from './components/widget/widget-edit/widget-ima
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetService } from "./services/widget.service.client";
 import { SafePipe } from "./components/widget/widget-list/safepipe";
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import { QuillEditorModule } from 'ngx-quill-editor';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import { FlickrService } from "./services/flikr.service.client";
 
 @NgModule({
   // Declare components here
@@ -50,12 +55,16 @@ import { SafePipe } from "./components/widget/widget-list/safepipe";
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    SafePipe
+    SafePipe,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    QuillEditorModule,
     Routing
   ],
   // Client Side services here
@@ -63,7 +72,8 @@ import { SafePipe } from "./components/widget/widget-list/safepipe";
     UserService,
     WebsiteService,
     PageService,
-    WidgetService],
+    WidgetService,
+    FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

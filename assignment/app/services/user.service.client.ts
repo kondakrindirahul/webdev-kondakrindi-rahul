@@ -29,7 +29,7 @@ export class UserService {
 
 
   createUser(user) {
-    const url = this.domain_url + '/api/user/';
+    const url = this.domain_url + '/api/user';
     return this.http.post(url, user)
       .map((response: Response) => {
         return response.json();

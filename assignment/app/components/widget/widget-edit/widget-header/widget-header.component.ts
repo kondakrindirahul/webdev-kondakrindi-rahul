@@ -66,8 +66,8 @@ export class WidgetHeaderComponent implements OnInit {
         });
     }
     else {
-      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: ""};
-      this.widget.widgetType = "HEADING";
+      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: "", rows: 0, name: "", placeholder: "", formatted: false};
+      this.widget.widgetType = 'HEADING';
     }
   }
 

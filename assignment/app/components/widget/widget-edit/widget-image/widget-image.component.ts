@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { WidgetService } from "../../../../services/widget.service.client";
 import { Widget } from "../../../../models/widget.model.client";
+import { environment } from "../../../../../environments/environment";
+import { Http, Response } from "@angular/http";
 
 @Component({
   selector: 'app-widget-image',
@@ -17,10 +19,13 @@ export class WidgetImageComponent implements OnInit {
   width: string;
   url: string;
   widget: Widget;
+  files: String[] = [];
+  baseUrl: string = environment.baseUrl;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private http: Http) { }
 
   deleteImage() {
     if(this.widgetId) {
@@ -58,17 +63,23 @@ export class WidgetImageComponent implements OnInit {
           this.pageId = params['pid'];
         });
 
+    this.http.get(this.baseUrl + '/api/upload')
+      .map((response: Response) => {
+        return response.json();
+      })
+      .subscribe((files) => {
+        this.files = files;
+      });
+
     if (this.widgetId) {
       this.widgetService
         .findWidgetById(this.userId, this.websiteId, this.pageId, this.widgetId)
         .subscribe((widget) => {
           this.widget = widget;
-          // this.width = this.widget.width;
-          // this.url = this.widget.url;
         });
     }
     else {
-      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: ""};
+      this.widget = {_id: "", widgetType: "", pageId: "", size: "", text: "", width: "", url: "", rows: null, name: "", placeholder: "", formatted: false};
       this.widget.widgetType = "IMAGE";
     }
   }

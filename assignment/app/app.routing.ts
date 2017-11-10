@@ -22,6 +22,9 @@ import { WidgetChooserComponent } from "./components/widget/widget-chooser/widge
 import { WidgetYoutubeComponent } from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
 import { WidgetImageComponent } from "./components/widget/widget-edit/widget-image/widget-image.component";
 import { WidgetHeaderComponent } from "./components/widget/widget-edit/widget-header/widget-header.component";
+import { WidgetHtmlComponent } from "./components/widget/widget-edit/widget-html/widget-html.component";
+import { WidgetTextComponent } from "./components/widget/widget-edit/widget-text/widget-text.component";
+import { FlickrImageSearchComponent } from "./components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component";
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
@@ -37,10 +40,13 @@ const APP_ROUTES: Routes = [
   {path: 'user/:userId/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
   {path: 'user/:userId/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent},
   {path: 'user/:userId/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent}
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/image/flickr', component: FlickrImageSearchComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent},
+  {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
 
 ];
 

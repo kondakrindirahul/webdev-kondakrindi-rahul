@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   verify_password: string;
   user: User;
   errorFlag: boolean;
-  errorFlag2: boolean
+  errorFlag2: boolean;
   errorMsg = 'Try registering with different username';
   errorMsg2 = 'The Passwords do not match';
 
@@ -35,17 +35,19 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.userService.findUserByCredentials(this.username, this.password).
+    this.userService.findUserByUsername(this.username).
     subscribe((current_user: User) => {
-      if (current_user._id == null) {
-        const new_user: User = new User('', this.username, this.password, '', '');
+      if (current_user === null) {
+        // const new_user: User = new User('', this.username, this.password, '', '');
+        const new_user = {
+          username: this.username,
+          password: this.password
+        };
         this.userService.createUser(new_user)
           .subscribe((user) => {
-            // this.user = user;
-            this.router.navigate(['/user/', user._id]);
+            this.router.navigate(['/user', user._id]);
           });
-      }
-      else {
+      } else {
         this.errorFlag = true;
       }
     });

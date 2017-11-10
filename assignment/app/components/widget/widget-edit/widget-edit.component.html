@@ -1,4 +1,4 @@
-
+<div *ngIf="widget">
 <div [ngSwitch]="widget.widgetType">
 
   <div *ngSwitchCase="'HEADING'">
@@ -13,5 +13,14 @@
     <app-widget-youtube></app-widget-youtube>
   </div>
 
+  <div *ngSwitchCase="'HTML'">
+    <app-widget-html></app-widget-html>
+  </div>
+
+  <div *ngSwitchCase="'TEXT'">
+    <app-widget-text></app-widget-text>
+  </div>
+
 </div>
 
+</div>

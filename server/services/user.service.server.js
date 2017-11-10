@@ -1,5 +1,7 @@
 module.exports = function (app) {
 
+  var userModel = require("../models/user/user.model.server");
+
   app.post("/api/user", createUser);
   app.get("/api/user", findUsers);
   app.get("/api/user/:userId", findUserById);
@@ -13,11 +15,11 @@ module.exports = function (app) {
   ];
 
   function createUser(req, res) {
-    var user_id = (new Date()).getTime() + "";
-    var user = req.body;
-    user._id = user_id;
-    users.push(user);
-    res.json(user);
+    var new_user = req.body;
+    userModel.createUser(new_user)
+      .then(function (user) {
+        res.json(user);
+      });
   }
 
   function findUsers(req, res) {
@@ -25,30 +27,19 @@ module.exports = function (app) {
     var password =  req.query["password"];
 
     if(username && password) {
-      var user = users.find(function (user) {
-        return user.username === username && user.password === password;
-      });
-      if(user) {
+      var promise = userModel.findUserByCredentials(username, password);
+      promise.then(function (user) {
         res.json(user);
-      }
-      else {
-        res.json({});
-      }
-
+        // console.log(result);
+      });
       return;
     }
 
     else if(username) {
-      var user = users.find(function (user) {
-        return user.username === username;
-      });
-      if(user) {
-        res.json(user);
-      }
-      else {
-        res.json({});
-      }
-
+      userModel.findUserByUsername(username)
+        .then(function(user) {
+          res.json(user);
+        });
       return;
     }
     res.json(users);
@@ -56,22 +47,20 @@ module.exports = function (app) {
 
   function findUserById(req, res) {
     var userId = req.params["userId"];
-    var user = users.find(function (user) {
-      return user._id === userId;
+
+    userModel.findUserById(userId)
+      .then(function (user) {
+        res.json(user);
     });
-    res.json(user);
   }
 
   function updateUser(req, res) {
     var userId = req.params['userId'];
     var newUser = req.body;
-    for(var i=0; i<users.length; i++) {
-      if(users[i]._id === userId) {
-        users[i] = newUser;
-        res.json(newUser);
-        return;
-      }
-    }
+    userModel.updateUser(userId, newUser).
+      then(function (users) {
+        res.json(users);
+    });
   }
 
 };
