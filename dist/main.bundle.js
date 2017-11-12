@@ -105,12 +105,18 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ngx_quill_editor__ = __webpack_require__("../../../../ngx-quill-editor/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../assignment/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__services_flikr_service_client__ = __webpack_require__("../../../../../assignment/app/services/flikr.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__fitnesspalapi_test_fitnesspalapi_test_component__ = __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_fitnesspal_service_client__ = __webpack_require__("../../../../../assignment/app/services/fitnesspal.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__fitnesspalapi_test_display_item_display_item_component__ = __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -175,7 +181,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_28__components_widget_widget_list_safepipe__["a" /* SafePipe */],
             __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
             __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */],
-            __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */]
+            __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */],
+            __WEBPACK_IMPORTED_MODULE_34__fitnesspalapi_test_fitnesspalapi_test_component__["a" /* FitnesspalapiTestComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__fitnesspalapi_test_display_item_display_item_component__["a" /* DisplayItemComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -190,7 +198,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_16__services_website_service_client__["a" /* WebsiteService */],
             __WEBPACK_IMPORTED_MODULE_20__services_page_service_client__["a" /* PageService */],
             __WEBPACK_IMPORTED_MODULE_27__services_widget_service_client__["a" /* WidgetService */],
-            __WEBPACK_IMPORTED_MODULE_33__services_flikr_service_client__["a" /* FlickrService */]],
+            __WEBPACK_IMPORTED_MODULE_33__services_flikr_service_client__["a" /* FlickrService */],
+            __WEBPACK_IMPORTED_MODULE_35__services_fitnesspal_service_client__["a" /* FitnesspalServiceClient */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -225,9 +234,13 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../assignment/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../assignment/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../assignment/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__fitnesspalapi_test_fitnesspalapi_test_component__ = __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__fitnesspalapi_test_display_item_display_item_component__ = __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.ts");
 /**
  * Created by sesha on 7/26/17.
  */
+
+
 
 
 
@@ -253,6 +266,8 @@ var APP_ROUTES = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_1__components_home_home_component__["a" /* HomeComponent */] },
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_2__components_test_test_component__["a" /* TestComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__components_user_login_login_component__["a" /* LoginComponent */] },
+    { path: 'fitness', component: __WEBPACK_IMPORTED_MODULE_21__fitnesspalapi_test_fitnesspalapi_test_component__["a" /* FitnesspalapiTestComponent */] },
+    { path: 'fitness/item', component: __WEBPACK_IMPORTED_MODULE_22__fitnesspalapi_test_display_item_display_item_component__["a" /* DisplayItemComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__components_user_register_register_component__["a" /* RegisterComponent */] },
     { path: 'user/:userId', component: __WEBPACK_IMPORTED_MODULE_5__components_user_profile_profile_component__["a" /* ProfileComponent */] },
     { path: 'user/:userId/website', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */] },
@@ -1794,7 +1809,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../assignment/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar rk-navbar navbar-fixed-top\">\n  <div class=\"container-fluid\">\n\n    <!--adding the back glyphicon-->\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Widget Edit</b>\n      </a>\n    </p>\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a class=\"navbar-link\"\n         (click)=\"updateImage()\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container container-fluid\">\n\n  <label>Name</label>\n  <input type=\"text\"\n         class=\"form-control\"\n         placeholder=\"Image Name\">\n\n\n  <label>Text</label>\n  <input type=\"text\"\n         class=\"form-control\"\n         placeholder=\"text\">\n\n  <label for=\"url\">URL</label>\n  <input [(ngModel)]=\"widget.url\"\n         name=\"url\"\n         id=\"url\"\n         type=\"url\"\n         class=\"form-control\"\n         placeholder=\"Image URL\">\n\n  <label for=\"width\">Width</label>\n  <input [(ngModel)]=\"widget.width\"\n         name=\"width\"\n         id=\"width\"\n         type=\"text\"\n         class=\"form-control\"\n         placeholder=\"Width\">\n\n  <form ngNoForm\n        action=\"{{baseUrl}}/api/upload\"\n        method=\"post\"\n        enctype=\"multipart/form-data\">\n    <input name=\"myFile\"\n           type=\"file\"\n           class=\"form-control\"/>\n    <input name=\"widgetId\"\n           value=\"{{widgetId}}\"\n           style=\"display: none\"/>\n    <input name=\"websiteId\"\n           value=\"{{websiteId}}\"\n           style=\"display: none\"/>\n    <input name=\"pageId\"\n           value=\"{{pageId}}\"\n           style=\"display: none\"/>\n    <input name=\"userId\"\n           value=\"{{userId}}\"\n           style=\"display: none\"/>\n    <button type=\"submit\"\n            class=\"btn btn-block btn-primary\">\n      Upload Image\n    </button>\n  </form>\n\n  <a class=\"btn btn-block btn-success\"\n     [routerLink]=\"['/user/',userId,'website',websiteId,'page',pageId,'widget','new','image','flickr']\">\n    Search Flickr\n  </a>\n\n  <a class=\"btn btn-danger btn-block\"\n     (click)=\"deleteImage()\">Delete</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar rk-navbar navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
+module.exports = "\n<nav class=\"navbar rk-navbar navbar-fixed-top\">\n  <div class=\"container-fluid\">\n\n    <!--adding the back glyphicon-->\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Widget Edit</b>\n      </a>\n    </p>\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a class=\"navbar-link\"\n         (click)=\"updateImage()\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container container-fluid\">\n\n  <label>Name</label>\n  <input type=\"text\"\n         class=\"form-control\"\n         placeholder=\"Image Name\">\n\n\n  <label>Text</label>\n  <input type=\"text\"\n         class=\"form-control\"\n         placeholder=\"text\">\n\n  <label for=\"url\">URL</label>\n  <input [(ngModel)]=\"widget.url\"\n         name=\"url\"\n         id=\"url\"\n         type=\"url\"\n         class=\"form-control\"\n         placeholder=\"Image URL\">\n\n  <label for=\"width\">Width</label>\n  <input [(ngModel)]=\"widget.width\"\n         name=\"width\"\n         id=\"width\"\n         type=\"text\"\n         class=\"form-control\"\n         placeholder=\"Width\">\n\n  <form ngNoForm\n        action=\"{{baseUrl}}/api/upload\"\n        method=\"post\"\n        enctype=\"multipart/form-data\">\n    <input name=\"myFile\"\n           required\n           type=\"file\"\n           class=\"form-control\"/>\n    <input name=\"widgetId\"\n           value=\"{{widgetId}}\"\n           style=\"display: none\"/>\n    <input name=\"websiteId\"\n           value=\"{{websiteId}}\"\n           style=\"display: none\"/>\n    <input name=\"pageId\"\n           value=\"{{pageId}}\"\n           style=\"display: none\"/>\n    <input name=\"userId\"\n           value=\"{{userId}}\"\n           style=\"display: none\"/>\n    <button type=\"submit\"\n            class=\"btn btn-block btn-primary\">\n      Upload Image\n    </button>\n  </form>\n\n  <a class=\"btn btn-block btn-success\"\n     [routerLink]=\"['/user/',userId,'website',websiteId,'page',pageId,'widget','new','image','flickr']\">\n    Search Flickr\n  </a>\n\n  <a class=\"btn btn-danger btn-block\"\n     (click)=\"deleteImage()\">Delete</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar rk-navbar navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
 
 /***/ }),
 
@@ -2247,6 +2262,140 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Nutrition Information</h1>\n\n"
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplayItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DisplayItemComponent = (function () {
+    function DisplayItemComponent() {
+    }
+    DisplayItemComponent.prototype.ngOnInit = function () {
+    };
+    return DisplayItemComponent;
+}());
+DisplayItemComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-display-item',
+        template: __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.html"),
+        styles: [__webpack_require__("../../../../../assignment/app/fitnesspalapi-test/display-item/display-item.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], DisplayItemComponent);
+
+//# sourceMappingURL=display-item.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*!*h1 {*!*/\n  /*!*font-size: 60px;*!*/\n  /*!*margin-bottom: 10px;*!*/\n  /*!*color: #4c5b82;*!*/\n  /*!*font-family: 'Amatic SC', cursive;*!*/\n/*!*}*!*/\n\n/*form { margin-bottom: 30px; }*/\n\n/*#input {*/\n  /*margin-left: auto;*/\n  /*margin-right: auto;*/\n  /*margin-bottom: 10px;*/\n/*}*/\n\n/*h2 { font-size: 16px; }*/\n\n/*h3 { font-size: 13px; }*/\n\n/*.results {*/\n  /*width: 100%;*/\n/*}*/\n\n/*.itemBar {*/\n  /*background-color: white;*/\n  /*opacity: 0.8;*/\n  /*transition: 0.2s;*/\n  /*width: 60%;*/\n  /*margin-left: auto;*/\n  /*margin-right: auto;*/\n  /*text-align: left;*/\n  /*border-right: 7px solid #f4b775;*/\n  /*border-top: thin solid #f4b775;*/\n/*}*/\n\n/*.itemBar:hover { opacity: 1; }*/\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Nutritionix API Test</h1>\n\n<label>Food Item</label>\n<input [(ngModel)]=\"fooditem\"\n       placeholder=\"pizza\"\n       class=\"form-control\"/>\n\n<button (click)=\"searchFood(fooditem)\"\n        class=\"btn btn-primary btn-block\">\n  Search\n</button>\n\n<ul class=\"list-group\">\n  <li class=\"list-group-item\"\n      *ngFor=\"let food of result\">\n    <h4>{{food.fields.item_name}}</h4>\n    Calories : {{food.fields.nf_calories}} <br>\n    Serving Size: {{food.fields.nf_serving_size_qty}}\n  </li>\n</ul>\n"
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FitnesspalapiTestComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_fitnesspal_service_client__ = __webpack_require__("../../../../../assignment/app/services/fitnesspal.service.client.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var FitnesspalapiTestComponent = (function () {
+    function FitnesspalapiTestComponent(fitnesspalService) {
+        this.fitnesspalService = fitnesspalService;
+    }
+    FitnesspalapiTestComponent.prototype.searchFood = function (fooditem) {
+        var _this = this;
+        this.fitnesspalService.searchFoodbyName(this.fooditem)
+            .subscribe(function (result) {
+            _this.result = result.hits;
+            console.log(_this.result);
+        });
+    };
+    FitnesspalapiTestComponent.prototype.ngOnInit = function () {
+    };
+    return FitnesspalapiTestComponent;
+}());
+FitnesspalapiTestComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-fitnesspalapi-test',
+        template: __webpack_require__("../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.html"),
+        styles: [__webpack_require__("../../../../../assignment/app/fitnesspalapi-test/fitnesspalapi-test.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_fitnesspal_service_client__["a" /* FitnesspalServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_fitnesspal_service_client__["a" /* FitnesspalServiceClient */]) === "function" && _a || Object])
+], FitnesspalapiTestComponent);
+
+var _a;
+//# sourceMappingURL=fitnesspalapi-test.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../assignment/app/models/page.model.client.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2302,6 +2451,51 @@ var Website = (function () {
 }());
 
 //# sourceMappingURL=website.model.client.js.map
+
+/***/ }),
+
+/***/ "../../../../../assignment/app/services/fitnesspal.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FitnesspalServiceClient; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var FitnesspalServiceClient = (function () {
+    function FitnesspalServiceClient(http) {
+        this.http = http;
+    }
+    FitnesspalServiceClient.prototype.searchFoodbyName = function (name) {
+        var url = 'https://api.nutritionix.com/v1_1/search/' + name +
+            '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=e6ce2c51&appKey=82b443c9f9191e8bc996127502a53d00';
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        });
+    };
+    return FitnesspalServiceClient;
+}());
+FitnesspalServiceClient = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], FitnesspalServiceClient);
+
+var _a;
+//# sourceMappingURL=fitnesspal.service.client.js.map
 
 /***/ }),
 

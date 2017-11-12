@@ -1,0 +1,20 @@
+<h1>Nutritionix API Test</h1>
+
+<label>Food Item</label>
+<input [(ngModel)]="fooditem"
+       placeholder="pizza"
+       class="form-control"/>
+
+<button (click)="searchFood(fooditem)"
+        class="btn btn-primary btn-block">
+  Search
+</button>
+
+<ul class="list-group">
+  <li class="list-group-item"
+      *ngFor="let food of result">
+    <h4>{{food.fields.item_name}}</h4>
+    Calories : {{food.fields.nf_calories}} <br>
+    Serving Size: {{food.fields.nf_serving_size_qty}}
+  </li>
+</ul>

@@ -1,9 +1,6 @@
-var multer = require('multer');
-var fs = require('fs');
-
 module.exports = function (app) {
-
-  var upload = multer({dest:__dirname+'/../../assignment/uploads'});
+  var multer = require('multer');
+  var upload = multer({dest:__dirname+'/../../assignment/assets/uploads'});
 
   app.post('/api/user/:userId/website/:wid/page/:pid/widget', createWidget);
   app.get('/api/user/:userId/website/:wid/page/:pid/widget', findWidgetsByPageId);
@@ -13,7 +10,7 @@ module.exports = function (app) {
   app.put('/api/user/:userId/website/:wid/page/:pid/widget/:wgid', updateWidget);
 
   app.post('/api/upload', upload.single('myFile'), uploadImage);
-  app.get('/api/upload', getFileUploads);
+  // app.get('/api/upload', getFileUploads);
 
   var WIDGETS = [
     {_id: "123", widgetType: "HEADING", pageId: "321", size: "2", text: "Gizmodo", width: "", url: ""},
@@ -81,38 +78,39 @@ module.exports = function (app) {
   }
 
   function uploadImage(req, res) {
-
     var widgetId = req.body.widgetId;
+    var width = req.body.width;
+    var myFile = req.file;
+
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
     var originalname = myFile.originalname;
     var filename = myFile.filename;
+    var path = myFile.path;
+    var destination = myFile.destination;
+    var size = myFile.size;
+    var mimetype = myFile.mimetype;
 
-    // var width = req.body.width;
-    // var myFile = req.file;
-    //
-    // var userId = req.body.userId;
-    // var websiteId = req.body.websiteId;
-    // var pageId = req.body.pageId;
-    //
-    // var originalname = myFile.originalname;
-    // var filename = myFile.filename;
-    // var path = myFile.path;
-    // var destination = myFile.destination;
-    // var size = myFile.size;
-    // var mimetype = myFile.mimetype;
-    //
-    // widget = findWidgetById(widgetId);
-    // widget.url = '/upload/'+filename;
+    widget = widgetModel.findWidgetById(widgetId);
+    widget.url = '/assets/uploads/' + filename;
+    widgetModel
+      .updateWidget(widgetId, widget)
+      .then(function () {
+        res.json(null);
+      });
 
-    var callbackUrl = "/api/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    var callbackUrl = req.headers.origin + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
     res.redirect(callbackUrl);
   }
 
-  function getFileUploads(req, res) {
-    fs.readdir(__dirname+'/../../assignment/uploads',
-      function (err, files) {
-        res.send(files);
-      });
-  }
+  // function getFileUploads(req, res) {
+  //   fs.readdir(__dirname+'/../../assignment/uploads',
+  //     function (err, files) {
+  //       res.send(files);
+  //     });
+  // }
 
 };
 

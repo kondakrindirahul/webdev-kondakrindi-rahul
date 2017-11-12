@@ -33,6 +33,9 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { QuillEditorModule } from 'ngx-quill-editor';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import { FlickrService } from "./services/flikr.service.client";
+import { FitnesspalapiTestComponent } from './fitnesspalapi-test/fitnesspalapi-test.component';
+import { FitnesspalServiceClient } from "./services/fitnesspal.service.client";
+import { DisplayItemComponent } from './fitnesspalapi-test/display-item/display-item.component';
 
 @NgModule({
   // Declare components here
@@ -58,7 +61,9 @@ import { FlickrService } from "./services/flikr.service.client";
     SafePipe,
     WidgetHtmlComponent,
     WidgetTextComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    FitnesspalapiTestComponent,
+    DisplayItemComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,8 @@ import { FlickrService } from "./services/flikr.service.client";
     WebsiteService,
     PageService,
     WidgetService,
-    FlickrService],
+    FlickrService,
+    FitnesspalServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

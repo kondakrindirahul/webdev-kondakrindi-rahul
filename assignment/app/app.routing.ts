@@ -25,11 +25,15 @@ import { WidgetHeaderComponent } from "./components/widget/widget-edit/widget-he
 import { WidgetHtmlComponent } from "./components/widget/widget-edit/widget-html/widget-html.component";
 import { WidgetTextComponent } from "./components/widget/widget-edit/widget-text/widget-text.component";
 import { FlickrImageSearchComponent } from "./components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component";
+import { FitnesspalapiTestComponent } from "./fitnesspalapi-test/fitnesspalapi-test.component";
+import {DisplayItemComponent} from "./fitnesspalapi-test/display-item/display-item.component";
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
   {path: 'test', component: TestComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'fitness', component: FitnesspalapiTestComponent},
+  {path: 'fitness/item', component: DisplayItemComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/:userId', component: ProfileComponent},
   {path: 'user/:userId/website', component: WebsiteListComponent},
