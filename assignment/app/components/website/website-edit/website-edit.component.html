@@ -69,6 +69,10 @@
     </div>
 
     <div class="col-sm-9">
+      <div *ngIf="errorFlag"
+           class="alert alert-danger">
+        <b>"Enter the Website Name to Edit"</b>
+      </div>
       <label>Website Name</label>
       <input [(ngModel)]="website.name"
              class="form-control"

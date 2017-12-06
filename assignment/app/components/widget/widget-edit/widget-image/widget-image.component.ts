@@ -21,6 +21,8 @@ export class WidgetImageComponent implements OnInit {
   widget: Widget;
   files: String[] = [];
   baseUrl: string = environment.baseUrl;
+  errorFlag1: Boolean;
+  errorFlag2: Boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -39,17 +41,25 @@ export class WidgetImageComponent implements OnInit {
 
   updateImage() {
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if(this.widget.url && this.widget.width) {
+        this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag1 = true;
+      }
     }
     else {
-      this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.widget = widget;
-          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if (this.widget.url && this.widget.width) {
+        this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.widget = widget;
+            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag2 = true;
+      }
     }
   }
 

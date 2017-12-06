@@ -16,6 +16,7 @@ export class WebsiteEditComponent implements OnInit {
 
   websiteId: string;
   website: Website;
+  errorFlag: Boolean;
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
@@ -50,12 +51,16 @@ export class WebsiteEditComponent implements OnInit {
       this.website = website;
       });
 
-    const updatedWebsite = this.website;
-    this.websiteService.updateWebsite(this.userId, updatedWebsite)
-      .subscribe((websites) => {
-        this.websites = websites;
-        this.router.navigate(['user', this.userId, 'website']);
-      });
+    if(this.website.name) {
+      const updatedWebsite = this.website;
+      this.websiteService.updateWebsite(this.userId, updatedWebsite)
+        .subscribe((websites) => {
+          this.websites = websites;
+          this.router.navigate(['user', this.userId, 'website']);
+        });
+    } else {
+      this.errorFlag = true;
+    }
   }
 
   deleteWebsite(websiteId) {

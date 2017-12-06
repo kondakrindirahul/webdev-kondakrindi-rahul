@@ -69,6 +69,10 @@
     </div>
 
     <div class="col-sm-9">
+      <div *ngIf="errorFlag"
+           class="alert alert-danger">
+        <b>"Enter the Page Name to Edit"</b>
+      </div>
 
       <label>Name</label>
       <input [(ngModel)]="page.name"

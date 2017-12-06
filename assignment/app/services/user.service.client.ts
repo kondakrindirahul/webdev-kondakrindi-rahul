@@ -4,21 +4,26 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { SharedServiceClient } from "./shared.service.client";
 
 @Injectable()
 export class UserService {
-  users: User[] = [
-    new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
-    new User('234', 'bob', 'bob', 'Bob', 'Marley'),
-    new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
-    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
-  ];
 
-  constructor(private http: Http) {}
+  users: User[];
+
+  constructor(private http: Http,
+              private sharedService: SharedServiceClient,
+              private router: Router) {}
+
+  options: RequestOptions = new RequestOptions();
 
   domain_url = environment.baseUrl;
 
   api = {
+    'register'  : this.register,
+    'login'  : this.login,
+    'logout' : this.logout,
+    'loggedIn' : this.loggedIn,
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById,
     'findUserByCredentials' : this.findUserByCredentials,
@@ -27,6 +32,70 @@ export class UserService {
     'deleteUser' : this.deleteUser
   };
 
+  register(username, password) {
+    const url = this.domain_url + '/api/register';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this.http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  login(username, password) {
+    const url = this.domain_url + '/api/login';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this.http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  logout() {
+    const url = this.domain_url + '/api/logout';
+    this.options.withCredentials = true;
+    return this.http.post(url, this.options)
+    .map((status) => {
+      return status;
+    });
+  }
+
+  loggedIn() {
+    const url = this.domain_url + '/api/loggedIn';
+    this.options.withCredentials = true;
+    return this.http.post(url, '', this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        if (user !== 0) {
+          this.sharedService.user = user;
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
+  }
+
+  isAdmin() {
+    const url = this.domain_url + '/api/admin/isAdmin';
+    this.options.withCredentials = true;
+    return this.http.get(url, this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        if (user !== 0) {
+          this.sharedService.user = user; return true;
+        } else {
+          this.router.navigate(['/login']); return false;
+        }
+      });
+  }
 
   createUser(user) {
     const url = this.domain_url + '/api/user';
@@ -52,6 +121,16 @@ export class UserService {
       });
 
   }
+
+  findAllUsers() {
+    const url = this.domain_url + '/api/admin/user';
+    this.options.withCredentials = true;
+    return this.http.get(url, this.options)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
 
   findUserByUsername(username) {
     const url = this.domain_url + '/api/user?username=' + username;

@@ -36,6 +36,12 @@ import { FlickrService } from "./services/flikr.service.client";
 import { FitnesspalapiTestComponent } from './fitnesspalapi-test/fitnesspalapi-test.component';
 import { FitnesspalServiceClient } from "./services/fitnesspal.service.client";
 import { DisplayItemComponent } from './fitnesspalapi-test/display-item/display-item.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseServiceClient } from "./services/exercise.service.client";
+import { SharedServiceClient } from "./services/shared.service.client";
+import { AuthenticationService } from "./services/authentication.service.client";
+import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
+import { AdminServiceClient } from "./services/admin.service.client";
 
 @NgModule({
   // Declare components here
@@ -63,7 +69,9 @@ import { DisplayItemComponent } from './fitnesspalapi-test/display-item/display-
     WidgetTextComponent,
     FlickrImageSearchComponent,
     FitnesspalapiTestComponent,
-    DisplayItemComponent
+    DisplayItemComponent,
+    ExerciseComponent,
+    AdminUserListComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +87,11 @@ import { DisplayItemComponent } from './fitnesspalapi-test/display-item/display-
     PageService,
     WidgetService,
     FlickrService,
-    FitnesspalServiceClient],
+    FitnesspalServiceClient,
+    ExerciseServiceClient,
+    SharedServiceClient,
+    AuthenticationService,
+    AdminServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

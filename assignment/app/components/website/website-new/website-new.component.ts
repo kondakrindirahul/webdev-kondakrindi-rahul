@@ -29,12 +29,16 @@ export class WebsiteNewComponent implements OnInit {
               private router: Router) { }
 
   websitenew() {
-    const website: Website = new Website('', this.name, this.userId, this.description);
-    this.websiteService.createWebsite(this.userId, website)
-      .subscribe((websites) => {
-        // this.websites = websites;
-        this.router.navigate(['user', this.userId, 'website']);
-      });
+    if(this.name) {
+      const website: Website = new Website('', this.name, this.userId, this.description);
+      this.websiteService.createWebsite(this.userId, website)
+        .subscribe((websites) => {
+          // this.websites = websites;
+          this.router.navigate(['user', this.userId, 'website']);
+        });
+    } else {
+      this.errorFlag = true;
+    }
   }
 
   ngOnInit() {

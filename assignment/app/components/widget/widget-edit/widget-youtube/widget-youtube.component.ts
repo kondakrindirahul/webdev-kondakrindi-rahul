@@ -17,6 +17,8 @@ export class WidgetYoutubeComponent implements OnInit {
   width: string;
   url: string;
   widget: Widget;
+  errorFlag1: Boolean;
+  errorFlag2: Boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -33,18 +35,26 @@ export class WidgetYoutubeComponent implements OnInit {
 
   updateYoutube() {
     if (this.widgetId) {
-      this.widgetService
-        .updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.route.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if(this.widget.url && this.widget.width) {
+        this.widgetService
+          .updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.route.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag1 = true;
+      }
     }
     else {
-      this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.widget = widget;
-          this.route.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if(this.widget.url && this.widget.width) {
+        this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.widget = widget;
+            this.route.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag2 = true;
+      }
     }
   }
 

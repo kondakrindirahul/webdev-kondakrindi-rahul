@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service.client";
 import { User } from "../../../models/user.model.client";
 import { NgForm } from "@angular/forms";
+import { SharedServiceClient } from "../../../services/shared.service.client";
 
 @Component({
   selector: 'app-register',
@@ -11,46 +12,29 @@ import { NgForm } from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-  @ViewChild('f') registerForm: NgForm;
-
-  username: string;
-  password: string;
-  verify_password: string;
-  user: User;
+  username: String;
+  password: String;
+  verify_password: String;
   errorFlag: boolean;
-  errorFlag2: boolean;
-  errorMsg = 'Try registering with different username';
-  errorMsg2 = 'The Passwords do not match';
+  // errorMsg: 'The passwords do not match';
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedServiceClient) { }
 
   register() {
-    this.username = this.registerForm.value.username;
-    this.password = this.registerForm.value.password;
-    this.verify_password = this.registerForm.value.verify_password;
 
-    if (this.password !== this.verify_password) {
-      this.errorFlag2 = true;
+    if(this.password !== this.verify_password) {
+      this.errorFlag = true;
       return;
     }
 
-    this.userService.findUserByUsername(this.username).
-    subscribe((current_user: User) => {
-      if (current_user === null) {
-        // const new_user: User = new User('', this.username, this.password, '', '');
-        const new_user = {
-          username: this.username,
-          password: this.password
-        };
-        this.userService.createUser(new_user)
-          .subscribe((user) => {
-            this.router.navigate(['/user', user._id]);
-          });
-      } else {
-        this.errorFlag = true;
-      }
-    });
+    this.userService.register(this.username, this.password)
+      .subscribe((user) => {
+        this.sharedService.user = user;
+        this.router.navigate(['user', user._id]);
+      });
+
   }
 
   ngOnInit() {

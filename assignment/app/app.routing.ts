@@ -1,11 +1,8 @@
-/**
- * Created by sesha on 7/26/17.
- */
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { ModuleWithProviders } from '@angular/core';
+import { TestComponent } from './components/test/test.component';
 
-import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
-import {ModuleWithProviders} from '@angular/core';
-import {TestComponent} from './components/test/test.component';
 
 import { LoginComponent } from "./components/user/login/login.component";
 import { RegisterComponent } from "./components/user/register/register.component";
@@ -26,31 +23,38 @@ import { WidgetHtmlComponent } from "./components/widget/widget-edit/widget-html
 import { WidgetTextComponent } from "./components/widget/widget-edit/widget-text/widget-text.component";
 import { FlickrImageSearchComponent } from "./components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component";
 import { FitnesspalapiTestComponent } from "./fitnesspalapi-test/fitnesspalapi-test.component";
-import {DisplayItemComponent} from "./fitnesspalapi-test/display-item/display-item.component";
+import { DisplayItemComponent } from "./fitnesspalapi-test/display-item/display-item.component";
+import { ExerciseComponent } from "./exercise/exercise.component";
+import { AuthenticationService } from "./services/authentication.service.client";
+import { AdminUserListComponent } from "./components/admin-user-list/admin-user-list.component";
+import { AdminServiceClient } from "./services/admin.service.client";
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
   {path: 'test', component: TestComponent},
+  {path: 'admin/user', component: AdminUserListComponent, canActivate: [AdminServiceClient] },
   {path: 'login', component: LoginComponent},
   {path: 'fitness', component: FitnesspalapiTestComponent},
   {path: 'fitness/item', component: DisplayItemComponent},
+  {path: 'exercise', component: ExerciseComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:userId', component: ProfileComponent},
-  {path: 'user/:userId/website', component: WebsiteListComponent},
-  {path: 'user/:userId/website/new', component: WebsiteNewComponent},
-  {path: 'user/:userId/website/:wid', component: WebsiteEditComponent},
-  {path: 'user/:userId/website/:wid/page', component: PageListComponent},
-  {path: 'user/:userId/website/:wid/page/new', component: PageNewComponent},
-  {path: 'user/:userId/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/image/flickr', component: FlickrImageSearchComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent},
-  {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
+  // {path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId', component: ProfileComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website', component: WebsiteListComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/new', component: WebsiteNewComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid', component: WebsiteEditComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page', component: PageListComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/new', component: PageNewComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid', component: PageEditComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget', component: WidgetListComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/header', component: WidgetHeaderComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/image', component: WidgetImageComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/image/flickr', component: FlickrImageSearchComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/youtube', component: WidgetYoutubeComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/html', component: WidgetHtmlComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/new/text', component: WidgetTextComponent, canActivate: [AuthenticationService] },
+  {path: 'user/:userId/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent, canActivate: [AuthenticationService] }
 
 ];
 

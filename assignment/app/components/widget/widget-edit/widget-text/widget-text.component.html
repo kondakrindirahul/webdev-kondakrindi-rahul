@@ -39,6 +39,11 @@
          class="form-control"
          id="rows"
          type="number"/>
+
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    <b>Enter Name to create or edit a text widget</b>
+  </div>
   <label for="Name">Name</label>
   <div>
     <input [(ngModel)]="widget.name"

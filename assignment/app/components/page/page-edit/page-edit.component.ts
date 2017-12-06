@@ -17,6 +17,7 @@ export class PageEditComponent implements OnInit {
   //properties
   pageId: string;
   page: Page;
+  errorFlag: Boolean;
 
   constructor(private pageService: PageService,
               private activatedRoute: ActivatedRoute,
@@ -48,12 +49,16 @@ export class PageEditComponent implements OnInit {
         this.page = page;
       });
 
-    const updatedPage = this.page;
-    this.pageService.updatePage(this.userId, this.websiteId, updatedPage)
-      .subscribe((pages) => {
-        this.pages = pages;
-        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
-      });
+    if(this.page.name) {
+      const updatedPage = this.page;
+      this.pageService.updatePage(this.userId, this.websiteId, updatedPage)
+        .subscribe((pages) => {
+          this.pages = pages;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+        });
+    } else {
+      this.errorFlag = true;
+    }
   }
 
   deletePage(pageId){

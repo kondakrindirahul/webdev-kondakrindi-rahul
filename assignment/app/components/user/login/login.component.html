@@ -2,47 +2,40 @@
 
   <div *ngIf="errorFlag"
        class="alert alert-danger">
-    {{errorMsg}}
+    'Invalid username or password!!'
   </div>
 
   <h1>Login</h1>
 
-  <form (ngSubmit) = "login()" #f="ngForm">
+  <input [(ngModel)]="username"
+         name="username"
+         placeholder="username"
+         type="text"
+         class="form-control"/>
 
-    <input   placeholder="username"
-             name="username"
-             type="text"
-             class="form-control"
-             ngModel
-             required
-             #username="ngModel"/>
-    <span class="help-block"
-          *ngIf="!username.valid && username.touched">
-      Please enter username!
-   </span>
+  <input [(ngModel)]="password"
+         placeholder="password"
+         name="password"
+         type="password"
+         class="form-control"/>
 
-    <input  placeholder="password"
-            type="password"
-            name="password"
-            class="form-control"
-            ngModel
-            required
-            #password="ngModel"/>
-    <span class="help-block"
-          *ngIf="!username.valid && username.touched">
-      Please enter Password!
-   </span>
+  <button (click)="login()"
+          class="btn btn-block btn-primary">
+    Login
+  </button>
 
-    <button class="btn btn-primary btn-block"
-            type="submit"
-            [disabled]="!f.valid">
-      Login
-    </button>
-    <button routerLink="/register"
-            class="btn btn-success btn-block"
-            type="submit">
-      Register
-    </button>
-  </form>
+  <a href="{{base_url}}/facebook/login"
+     class="btn btn-primary btn-block">
+    <span class="fa fa-facebook"></span>
+    Facebook
+  </a>
+
+
+  <button routerLink="/register"
+          class="btn btn-success btn-block"
+          type="submit">
+    Register
+  </button>
+
 
 </div>

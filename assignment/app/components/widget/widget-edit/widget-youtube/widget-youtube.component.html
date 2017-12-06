@@ -42,6 +42,10 @@
          class="form-control"
          placeholder="text">
 
+  <div *ngIf="errorFlag1"
+       class="alert alert-danger">
+    <b>Enter youtube url to create or delete youtube widget</b>
+  </div>
   <label for="url">URL</label>
   <input [(ngModel)]="widget.url"
          id="url"
@@ -50,6 +54,10 @@
          class="form-control"
          placeholder="Youtube URL">
 
+  <div *ngIf="errorFlag2"
+       class="alert alert-danger">
+    <b>Enter youtube width to create or delete youtube widget</b>
+  </div>
   <label for="width">Width</label>
   <input [(ngModel)]="widget.width"
          id="width"

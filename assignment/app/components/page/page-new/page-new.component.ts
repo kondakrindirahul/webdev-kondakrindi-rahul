@@ -21,7 +21,6 @@ export class PageNewComponent implements OnInit {
   name: string;
   title: string;
   errorFlag: boolean;
-  errorMsg: 'Invalid username or password ! ';
 
   constructor(private pageService: PageService,
               private activatedRoute: ActivatedRoute,
@@ -44,12 +43,16 @@ export class PageNewComponent implements OnInit {
 
 
   pagenew() {
-    const page: Page = new Page('', this.name, this.websiteId, this.title);
-    this.pageService.createPage(this.userId, this.websiteId, page)
-      .subscribe((pages) => {
-        this.pages = pages;
-        this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
-      });
+    if(this.name) {
+      const page: Page = new Page('', this.name, this.websiteId, this.title);
+      this.pageService.createPage(this.userId, this.websiteId, page)
+        .subscribe((pages) => {
+          this.pages = pages;
+          this.router.navigate(['user', this.userId, 'website', this.websiteId, 'page']);
+        });
+    } else {
+      this.errorFlag = true;
+    }
   }
 
 }

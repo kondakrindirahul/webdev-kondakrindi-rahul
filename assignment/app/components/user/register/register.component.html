@@ -1,67 +1,40 @@
 <div class="container-fluid">
 
-  <div *ngIf="errorFlag"
-       class="alert alert-danger">
-    {{errorMsg}}
-  </div>
-  <div *ngIf="errorFlag2"
-       class="alert alert-danger">
-    {{errorMsg2}}
-  </div>
-
   <h1>Register</h1>
 
-  <form (ngSubmit) = "register()" #f="ngForm">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    The passwords do not match!!
+  </div>
 
-    <input placeholder="username"
-           name="username"
-           type="text"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
-    <span class="help-block"
-          *ngIf="!username.valid && username.touched">
-      Please enter username!
-   </span>
+  <input [(ngModel)]="username"
+         placeholder="username"
+         name="username"
+         type="text"
+         class="form-control"/>
 
-    <input placeholder="password"
-           name="password"
-           type="password"
-           class="form-control"
-           ngModel
-           required
-           #password="ngModel"/>
-    <span class="help-block"
-          *ngIf="!password.valid && password.touched">
-      Please enter password!
-   </span>
+  <input [(ngModel)]="password"
+         placeholder="password"
+         name="password"
+         type="password"
+         class="form-control"/>
 
-    <input placeholder="verify password"
-           type="password"
-           id="password"
-           class="form-control"
-           name="verify_password"
-           ngModel
-           required
-           #verify_password="ngModel"/>
-    <span class="help-block"
-          *ngIf="!verify_password.valid && verify_password.touched">
-      Please enter password!
-   </span>
+  <input [(ngModel)]="verify_password"
+         placeholder="verify_password"
+         name="verify_password"
+         type="password"
+         class="form-control"/>
 
-    <button class="btn btn-block btn-primary"
-            type="submit"
-            [disabled]="!f.valid">
-      Register
-    </button>
+  <button (click)="register()"
+          class="btn btn-block btn-primary">
+    Register
+  </button>
 
-    <a routerLink="/login" button
-       class="btn btn-danger btn-block">
-      Cancel
-    </a>
+  <a routerLink="/login" button
+     class="btn btn-danger btn-block">
+    Cancel
+  </a>
 
-  </form>
 </div>
 
 

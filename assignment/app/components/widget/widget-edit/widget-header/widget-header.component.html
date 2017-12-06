@@ -36,6 +36,10 @@
          class="form-control"
          placeholder="Name">
 
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    <b>Enter the Heading Text</b>
+  </div>
 
   <label for="text">Text</label>
   <input [(ngModel)]="widget.text"

@@ -20,6 +20,7 @@ export class WidgetTextComponent implements OnInit {
   // formatted: string;
   // rows: Number;
   placeholder: string;
+  errorFlag: Boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -37,17 +38,25 @@ export class WidgetTextComponent implements OnInit {
 
   updateText() {
     if (this.widgetId) {
-      this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if(this.widget.name) {
+        this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag = true;
+      }
     }
     else{
-      this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
-        .subscribe((widget) => {
-          this.widget = widget;
-          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-        });
+      if(this.widget.name) {
+        this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
+          .subscribe((widget) => {
+            this.widget = widget;
+            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+          });
+      } else {
+        this.errorFlag = true;
+      }
     }
   }
 

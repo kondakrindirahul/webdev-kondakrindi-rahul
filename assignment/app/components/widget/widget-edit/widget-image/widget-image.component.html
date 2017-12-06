@@ -42,6 +42,10 @@
          class="form-control"
          placeholder="text">
 
+  <div *ngIf="errorFlag1"
+       class="alert alert-danger">
+    <b>Enter an image url to create or delete widget image</b>
+  </div>
   <label for="url">URL</label>
   <input [(ngModel)]="widget.url"
          name="url"
@@ -50,6 +54,10 @@
          class="form-control"
          placeholder="Image URL">
 
+  <div *ngIf="errorFlag2"
+       class="alert alert-danger">
+    <b>Enter an image width to create or delete widget image</b>
+  </div>
   <label for="width">Width</label>
   <input [(ngModel)]="widget.width"
          name="width"
