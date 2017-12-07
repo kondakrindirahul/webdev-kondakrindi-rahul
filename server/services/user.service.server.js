@@ -8,51 +8,52 @@ module.exports = function (app) {
   var FacebookStrategy = require('passport-facebook').Strategy;
   var LocalStrategy = require('passport-local').Strategy;
 
-  // var facebookConfig = {
-  //   clientID     : process.env.FACEBOOK_CLIENT_ID,
-  //   clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-  //   callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-  // };
+  var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+  };
 
   passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
-  // passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+  passport.use(
+    new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
   app.post("/api/user", createUser);
   app.get("/api/user", findUsers);
   app.get("/api/user/:userId", findUserById);
   app.put("/api/user/:userId", updateUser);
-  // app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
-  //
-  // app.get ('/facebook/oauth2callback',
-  //   passport.authenticate('facebook', {
-  //     successRedirect: '/user',
-  //     failureRedirect: '/login'
-  //   }));
+  app.get ('/facebook/login',
+    passport.authenticate('facebook', { scope : 'email' }));
 
-  // function facebookStrategy(token, refreshToken, profile, done)
-  // {
-  //   userModel.findUserByFacebookId(profile.id)
-  //     .then(function(user) {
-  //       if(user) { return done(null, user); } // already in db
-  //       else { // if not, insert into db using profile info
-  //         var names = profile.displayName.split(" ");
-  //         var newFacebookUser = { lastName:  names[1],
-  //           firstName: names[0],
-  //           email:     profile.emails ? profile.emails[0].value:"",
-  //           facebook: { id:    profile.id, token: token }
-  //         };
-  //         return userModel.createUser(newFacebookUser);
-  //       }
-  //     })
-  //     .then(
-  //       function(user){
-  //         return done(null, user);
-  //       });
-  // }
+  app.get ('/facebook/oauth2callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/user',
+      failureRedirect: '/login'
+    }));
 
+  function facebookStrategy(token, refreshToken, profile, done)
+  {
+    userModel.findUserByFacebookId(profile.id)
+      .then(function(user) {
+        if(user) { return done(null, user); } // already in db
+        else { // if not, insert into db using profile info
+          var names = profile.displayName.split(" ");
+          var newFacebookUser = { lastName:  names[1],
+            firstName: names[0],
+            email:     profile.emails ? profile.emails[0].value:"",
+            facebook: { id: profile.id, token: token }
+          };
+          return userModel.createUser(newFacebookUser);
+        }
+      })
+      .then(
+        function(user){
+          return done(null, user);
+        });
+  }
 
   app.post('/api/register', register);
   app.post('/api/login', passport.authenticate('local'), login);
