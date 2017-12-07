@@ -38,7 +38,7 @@ const APP_ROUTES: Routes = [
   {path: 'fitness/item', component: DisplayItemComponent},
   {path: 'exercise', component: ExerciseComponent},
   {path: 'register', component: RegisterComponent},
-  // {path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
+  {path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
   {path: 'user/:userId', component: ProfileComponent, canActivate: [AuthenticationService] },
   {path: 'user/:userId/website', component: WebsiteListComponent, canActivate: [AuthenticationService] },
   {path: 'user/:userId/website/new', component: WebsiteNewComponent, canActivate: [AuthenticationService] },

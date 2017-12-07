@@ -294,7 +294,7 @@ var APP_ROUTES = [
     { path: 'fitness/item', component: __WEBPACK_IMPORTED_MODULE_22__fitnesspalapi_test_display_item_display_item_component__["a" /* DisplayItemComponent */] },
     { path: 'exercise', component: __WEBPACK_IMPORTED_MODULE_23__exercise_exercise_component__["a" /* ExerciseComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__components_user_register_register_component__["a" /* RegisterComponent */] },
-    // {path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
+    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_5__components_user_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_24__services_authentication_service_client__["a" /* AuthenticationService */]] },
     { path: 'user/:userId', component: __WEBPACK_IMPORTED_MODULE_5__components_user_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_24__services_authentication_service_client__["a" /* AuthenticationService */]] },
     { path: 'user/:userId/website', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_24__services_authentication_service_client__["a" /* AuthenticationService */]] },
     { path: 'user/:userId/website/new', component: __WEBPACK_IMPORTED_MODULE_8__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_24__services_authentication_service_client__["a" /* AuthenticationService */]] },
