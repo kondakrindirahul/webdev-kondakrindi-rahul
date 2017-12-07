@@ -30,8 +30,8 @@ module.exports = function (app) {
 
   app.get ('/facebook/oauth2callback',
     passport.authenticate('facebook', {
-      successRedirect: '/user',
-      failureRedirect: '/login'
+      successRedirect: 'user',
+      failureRedirect: 'login'
     }));
 
   function facebookStrategy(token, refreshToken, profile, done)
