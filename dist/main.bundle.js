@@ -1032,7 +1032,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../assignment/app/components/user/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n\n  <h1>Register</h1>\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    The passwords do not match!!\n  </div>\n\n  <input [(ngModel)]=\"username\"\n         placeholder=\"username\"\n         name=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"password\"\n         placeholder=\"password\"\n         name=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"verify_password\"\n         placeholder=\"verify_password\"\n         name=\"verify_password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <button (click)=\"register()\"\n          class=\"btn btn-block btn-primary\">\n    Register\n  </button>\n\n  <a routerLink=\"/login\" button\n     class=\"btn btn-danger btn-block\">\n    Cancel\n  </a>\n\n</div>\n\n\n\n\n"
+module.exports = "<div class=\"container-fluid\">\n\n  <h1>Register</h1>\n\n  <div *ngIf=\"errorFlag1\"\n       class=\"alert alert-danger\">\n    The passwords do not match!!\n  </div>\n\n  <div *ngIf=\"errorFlag2\"\n       class=\"alert alert-danger\">\n    <b>Please enter a password and verify the password</b>\n  </div>\n\n  <input [(ngModel)]=\"username\"\n         placeholder=\"username\"\n         name=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"password\"\n         placeholder=\"password\"\n         name=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"verify_password\"\n         placeholder=\"verify_password\"\n         name=\"verify_password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <button (click)=\"register()\"\n          class=\"btn btn-block btn-primary\"\n          [disabled]=\"!f.valid\">\n    Register\n  </button>\n\n  <a routerLink=\"/login\" button\n     class=\"btn btn-danger btn-block\">\n    Cancel\n  </a>\n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -1059,7 +1059,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RegisterComponent = (function () {
-    // errorMsg: 'The passwords do not match';
     function RegisterComponent(userService, router, sharedService) {
         this.userService = userService;
         this.router = router;
@@ -1067,15 +1066,20 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.register = function () {
         var _this = this;
-        if (this.password !== this.verify_password) {
-            this.errorFlag = true;
-            return;
+        if (this.password && this.verify_password) {
+            if (this.password !== this.verify_password) {
+                this.errorFlag1 = true;
+                return;
+            }
+            this.userService.register(this.username, this.password)
+                .subscribe(function (user) {
+                _this.sharedService.user = user;
+                _this.router.navigate(['user']);
+            });
         }
-        this.userService.register(this.username, this.password)
-            .subscribe(function (user) {
-            _this.sharedService.user = user;
-            _this.router.navigate(['user']);
-        });
+        else {
+            this.errorFlag2 = true;
+        }
     };
     RegisterComponent.prototype.ngOnInit = function () {
     };
