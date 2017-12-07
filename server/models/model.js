@@ -14,8 +14,6 @@ var mongoose = require('mongoose');
 var db = mongoose.connect(connectionString, { useMongoClient: true});
 module.exports = db;
 
-
-
 // // code for running in local//
 // var mongoose = require('mongoose');
 // var db = mongoose.connect('mongodb://localhost/cs5610', { useMongoClient: true});

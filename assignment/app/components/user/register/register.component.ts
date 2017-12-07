@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   register() {
 
     if(this.password && this.verify_password) {
-      if (this.password !== this.verify_password) {
+      if (this.password !== this.verify_password)  {
         this.errorFlag1 = true;
         return;
       }

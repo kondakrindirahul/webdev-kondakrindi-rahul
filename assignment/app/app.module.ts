@@ -42,6 +42,7 @@ import { SharedServiceClient } from "./services/shared.service.client";
 import { AuthenticationService } from "./services/authentication.service.client";
 import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { AdminServiceClient } from "./services/admin.service.client";
+import { SortableDirective } from "../directives/sortable.directive";
 
 @NgModule({
   // Declare components here
@@ -71,7 +72,8 @@ import { AdminServiceClient } from "./services/admin.service.client";
     FitnesspalapiTestComponent,
     DisplayItemComponent,
     ExerciseComponent,
-    AdminUserListComponent
+    AdminUserListComponent,
+    SortableDirective
   ],
   imports: [
     BrowserModule,

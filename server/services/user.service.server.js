@@ -141,14 +141,6 @@ module.exports = function (app) {
         }
       });
 
-    // userModel
-    //   .createUser(user)
-    //   .then(function(user){
-    //     req.login(user, function(err) {
-    //       res.json(user);
-    //     });
-    //   });
-
   }
 
   function createUser(req, res) {
@@ -216,6 +208,5 @@ module.exports = function (app) {
         }
       );
   }
-
 
 };
