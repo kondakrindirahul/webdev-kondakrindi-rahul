@@ -854,7 +854,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../assignment/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    'Invalid username or password!!'\n  </div>\n\n  <h1>Login</h1>\n\n  <input [(ngModel)]=\"username\"\n         name=\"username\"\n         placeholder=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"password\"\n         placeholder=\"password\"\n         name=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <button (click)=\"login()\"\n          class=\"btn btn-block btn-primary\">\n    Login\n  </button>\n\n  <a href=\"{{base_url}}/facebook/login\"\n     class=\"btn btn-primary btn-block\">\n    <span class=\"fa fa-facebook\"></span>\n    Facebook\n  </a>\n\n\n  <button routerLink=\"/register\"\n          class=\"btn btn-success btn-block\"\n          type=\"submit\">\n    Register\n  </button>\n\n\n</div>\n"
+module.exports = "<div class=\"container\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    'Please enter both username and password!!'\n  </div>\n\n  <h1>Login</h1>\n\n  <input [(ngModel)]=\"username\"\n         name=\"username\"\n         placeholder=\"username\"\n         type=\"text\"\n         class=\"form-control\"/>\n\n  <input [(ngModel)]=\"password\"\n         placeholder=\"password\"\n         name=\"password\"\n         type=\"password\"\n         class=\"form-control\"/>\n\n  <button (click)=\"login()\"\n          class=\"btn btn-block btn-primary\">\n    Login\n  </button>\n\n  <a href=\"{{base_url}}/facebook/login\"\n     class=\"btn btn-primary btn-block\">\n    <span class=\"fa fa-facebook\"></span>\n    Facebook\n  </a>\n\n\n  <button routerLink=\"/register\"\n          class=\"btn btn-success btn-block\"\n          type=\"submit\">\n    Register\n  </button>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -893,12 +893,17 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this.userService
-            .login(this.username, this.password)
-            .subscribe(function (user) {
-            _this.sharedService.user = user;
-            _this.router.navigate(['user']);
-        });
+        if (this.userService && this.password) {
+            this.userService
+                .login(this.username, this.password)
+                .subscribe(function (user) {
+                _this.sharedService.user = user;
+                _this.router.navigate(['user']);
+            });
+        }
+        else {
+            this.errorFlag = true;
+        }
     };
     return LoginComponent;
 }());

@@ -27,13 +27,16 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.userService
-      .login(this.username, this.password)
-      .subscribe((user) => {
-        this.sharedService.user = user;
-        this.router.navigate(['user']);
-      });
-
+    if(this.userService && this.password) {
+      this.userService
+        .login(this.username, this.password)
+        .subscribe((user) => {
+          this.sharedService.user = user;
+          this.router.navigate(['user']);
+        });
+    } else {
+      this.errorFlag = true;
+    }
   }
 
 }

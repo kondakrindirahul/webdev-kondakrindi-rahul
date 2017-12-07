@@ -41,7 +41,7 @@ module.exports = function (app) {
   app.get ('/facebook/login',
     passport.authenticate('facebook', { scope : 'email' }));
 
-  app.get ('/facebook/oauth2callback',
+  app.get ('/facebook/auth/callback',
     passport.authenticate('facebook', {
       successRedirect: '/user',
       failureRedirect: '/login'
