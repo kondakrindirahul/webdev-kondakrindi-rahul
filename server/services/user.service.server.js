@@ -19,18 +19,25 @@ module.exports = function (app) {
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
   };
+  passport.use(
+    new FacebookStrategy(facebookConfig, facebookStrategy));
 
   passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
-  passport.use(
-    new FacebookStrategy(facebookConfig, facebookStrategy));
 
+  app.post('/api/register', register);
+  app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+  app.post('/api/loggedIn', loggedIn);
+  app.get('/api/admin/isAdmin', isAdmin);
+  app.get('/api/admin/user', checkIsAdmin, findAllUsers);
 
   app.post("/api/user", createUser);
   app.get("/api/user", findUsers);
   app.get("/api/user/:userId", findUserById);
   app.put("/api/user/:userId", updateUser);
+
   app.get ('/facebook/login',
     passport.authenticate('facebook', { scope : 'email' }));
 
@@ -60,13 +67,6 @@ module.exports = function (app) {
           return done(null, user);
         });
   }
-
-  app.post('/api/register', register);
-  app.post('/api/login', passport.authenticate('local'), login);
-  app.post('/api/logout', logout);
-  app.post('/api/loggedIn', loggedIn);
-  app.get('/api/admin/isAdmin', isAdmin);
-  app.get('/api/admin/user', checkIsAdmin, findAllUsers);
 
   function login(req, res) {
       res.json(req.user);
