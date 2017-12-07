@@ -897,7 +897,7 @@ var LoginComponent = (function () {
             .login(this.username, this.password)
             .subscribe(function (user) {
             _this.sharedService.user = user;
-            _this.router.navigate(['user', user._id]);
+            _this.router.navigate(['user']);
         });
     };
     return LoginComponent;
@@ -937,7 +937,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../assignment/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n\n  <div class=\"container-fluid\">\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Profile</b>\n      </a>\n    </p>\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a class=\"navbar-link\"\n         (click)=\"updateProfile()\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n\n\n<div class=\"container container-fluid\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user.username\"\n             id=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"alice\">\n    </div>\n    <div class=\"form-group\">\n      <label>Email address</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"first\">First Name</label>\n      <input [(ngModel)]=\"user.firstName\"\n             id=\"first\"\n             name=\"firstName\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"last\">Last Name</label>\n      <input [(ngModel)]=\"user.lastName\"\n             id=\"last\"\n             name=\"lastName\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{user._id}}/website\">\n    Websites\n  </a>\n\n  <a class=\"btn btn-danger btn-block \"\n     (click)=\"logout()\">\n    Logout\n  </a>\n\n</div>\n\n<!--Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n\n  <div class=\"container-fluid\">\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b>Profile</b>\n      </a>\n    </p>\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a class=\"navbar-link\"\n         (click)=\"updateProfile()\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n\n\n<div class=\"container container-fluid\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"username\"\n             id=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"alice\">\n    </div>\n    <div class=\"form-group\">\n      <label>Email address</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"first\">First Name</label>\n      <input [(ngModel)]=\"firstName\"\n             id=\"first\"\n             name=\"firstName\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"last\">Last Name</label>\n      <input [(ngModel)]=\"lastName\"\n             id=\"last\"\n             name=\"lastName\"\n             type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{user._id}}/website\">\n    Websites\n  </a>\n\n  <a class=\"btn btn-danger btn-block \"\n     (click)=\"logout()\">\n    Logout\n  </a>\n\n</div>\n\n<!--Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n"
 
 /***/ }),
 
@@ -964,6 +964,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfileComponent = (function () {
+    // users: User[];
     function ProfileComponent(userService, activatedRoute, router, sharedService) {
         this.userService = userService;
         this.activatedRoute = activatedRoute;
@@ -972,11 +973,16 @@ var ProfileComponent = (function () {
         this.user = {};
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.activatedRoute.params
-            .subscribe(function (params) {
-            _this.user = _this.sharedService.user || {};
-        });
+        this.user = this.sharedService.user;
+        this.userId = this.user['_id'];
+        this.username = this.user['username'];
+        this.firstName = this.user['firstName'];
+        this.lastName = this.user['lastName'];
+        this.password = this.user['password'];
+        // this.activatedRoute.params
+        //   .subscribe(params => {
+        //     this.user = this.sharedService.user || {};
+        //   });
     };
     ProfileComponent.prototype.logout = function () {
         var _this = this;
@@ -986,12 +992,17 @@ var ProfileComponent = (function () {
         });
     };
     ProfileComponent.prototype.updateProfile = function () {
-        var _this = this;
-        var updatedUser = this.user;
-        this.userService.updateUser(this.userId, updatedUser)
-            .subscribe(function (users) {
-            _this.users = users;
-        });
+        this.sharedService.user['firstName'] = this.firstName;
+        this.sharedService.user['lastName'] = this.lastName;
+        this.sharedService.user['username'] = this.username;
+        this.userService
+            .updateUser(this.sharedService.user['_id'], this.sharedService.user)
+            .subscribe(function (users) { });
+        // const updatedUser = this.user;
+        // this.userService.updateUser(this.userId, updatedUser)
+        //   .subscribe((users) => {
+        //     this.users = users;
+        //   });
     };
     return ProfileComponent;
 }());

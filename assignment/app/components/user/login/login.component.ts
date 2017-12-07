@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       .login(this.username, this.password)
       .subscribe((user) => {
         this.sharedService.user = user;
-        this.router.navigate(['user', user._id]);
+        this.router.navigate(['user']);
       });
 
   }
