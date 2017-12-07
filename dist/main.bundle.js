@@ -964,7 +964,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfileComponent = (function () {
-    // users: User[];
     function ProfileComponent(userService, activatedRoute, router, sharedService) {
         this.userService = userService;
         this.activatedRoute = activatedRoute;
@@ -979,10 +978,6 @@ var ProfileComponent = (function () {
         this.firstName = this.user['firstName'];
         this.lastName = this.user['lastName'];
         this.password = this.user['password'];
-        // this.activatedRoute.params
-        //   .subscribe(params => {
-        //     this.user = this.sharedService.user || {};
-        //   });
     };
     ProfileComponent.prototype.logout = function () {
         var _this = this;
@@ -997,12 +992,8 @@ var ProfileComponent = (function () {
         this.sharedService.user['username'] = this.username;
         this.userService
             .updateUser(this.sharedService.user['_id'], this.sharedService.user)
-            .subscribe(function (users) { });
-        // const updatedUser = this.user;
-        // this.userService.updateUser(this.userId, updatedUser)
-        //   .subscribe((users) => {
-        //     this.users = users;
-        //   });
+            .subscribe(function (users) {
+        });
     };
     return ProfileComponent;
 }());
@@ -1083,7 +1074,7 @@ var RegisterComponent = (function () {
         this.userService.register(this.username, this.password)
             .subscribe(function (user) {
             _this.sharedService.user = user;
-            _this.router.navigate(['user', user._id]);
+            _this.router.navigate(['user']);
         });
     };
     RegisterComponent.prototype.ngOnInit = function () {

@@ -128,22 +128,26 @@ module.exports = function (app) {
     var user = req.body;
     user.password = bcrypt.hashSync(user.password);
 
-    // userModel.createUser(user)
-    //   .then(function (user) {
-    //     if(user) {
-    //       res.status(401);
-    //     } else {
-    //       res.json(user);
-    //     }
-    //   });
-
-    userModel
-      .createUser(user)
-      .then(function(user){
-        req.login(user, function(err) {
-          res.json(user);
-        });
+    userModel.createUser(user)
+      .then(function (user) {
+        if(user) {
+          req.login(user, function (err) {
+            if(err) {
+              res.status(400).send(err);
+            } else {
+              res.json(user);
+            }
+          });
+        }
       });
+
+    // userModel
+    //   .createUser(user)
+    //   .then(function(user){
+    //     req.login(user, function(err) {
+    //       res.json(user);
+    //     });
+    //   });
 
   }
 

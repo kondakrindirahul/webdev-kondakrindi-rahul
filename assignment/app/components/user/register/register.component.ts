@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.username, this.password)
       .subscribe((user) => {
         this.sharedService.user = user;
-        this.router.navigate(['user', user._id]);
+        this.router.navigate(['user']);
       });
 
   }
