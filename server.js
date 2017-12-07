@@ -10,8 +10,8 @@ const cookieParser = require('cookie-parser');
 const session      = require('express-session');
 
 app.use(cookieParser());
-// app.use(session({ secret: process.env.SESSION_SECRET }));
-app.use(session({secret: "someRandomString"}));
+app.use(session({ secret: process.env.SESSION_SECRET }));
+// app.use(session({secret: "someRandomString"}));
 
 const passport = require('passport');
 app.use(passport.initialize());
