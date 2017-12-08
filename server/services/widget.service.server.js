@@ -10,7 +10,6 @@ module.exports = function (app) {
   app.put('/api/user/:userId/website/:wid/page/:pid/widget/:wgid', updateWidget);
 
   app.post('/api/upload', upload.single('myFile'), uploadImage);
-  // app.get('/api/upload', getFileUploads);
 
   var widgetModel = require('../models/widgets/widget.model.server');
 
@@ -83,24 +82,16 @@ module.exports = function (app) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
 
-    widget = widgetModel.findWidgetById(widgetId);
-    widget.url = '/assets/uploads/' + filename;
-    widgetModel
-      .updateWidget(widgetId, widget)
-      .then(function () {
-        res.json(null);
+    widgetModel.findWidgetById(widgetId)
+      .then(function (widget) {
+        widget.url = '/assets/uploads' + filename;
+        widgetModel.updateWidget(widgetId, widget)
+          .then(function (status) {
+            var callbackUrl = '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId;
+            res.redirect(callbackUrl);
+          });
       });
-
-    var callbackUrl = req.headers.origin + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
-    res.redirect(callbackUrl);
   }
-
-  // function getFileUploads(req, res) {
-  //   fs.readdir(__dirname+'/../../assignment/uploads',
-  //     function (err, files) {
-  //       res.send(files);
-  //     });
-  // }
 
 };
 

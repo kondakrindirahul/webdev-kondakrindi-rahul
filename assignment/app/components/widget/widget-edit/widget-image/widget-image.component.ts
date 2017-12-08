@@ -41,27 +41,18 @@ export class WidgetImageComponent implements OnInit {
 
   updateImage() {
     if (this.widgetId) {
-      if(this.widget.url && this.widget.width) {
-        this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
-          .subscribe((widget) => {
-            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-          });
+      this.widgetService.updateWidget(this.userId, this.websiteId, this.pageId, this.widget)
+        .subscribe((widget) => {
+          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        });
       } else {
-        this.errorFlag1 = true;
+      this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
+        .subscribe((widget) => {
+          this.widget = widget;
+          this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
+        });
       }
     }
-    else {
-      if (this.widget.url && this.widget.width) {
-        this.widgetService.createWidget(this.userId, this.websiteId, this.pageId, this.widget)
-          .subscribe((widget) => {
-            this.widget = widget;
-            this.router.navigate(['/user/', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']);
-          });
-      } else {
-        this.errorFlag2 = true;
-      }
-    }
-  }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -72,14 +63,6 @@ export class WidgetImageComponent implements OnInit {
           this.websiteId = params['wid'];
           this.pageId = params['pid'];
         });
-
-    this.http.get(this.baseUrl + '/api/upload')
-      .map((response: Response) => {
-        return response.json();
-      })
-      .subscribe((files) => {
-        this.files = files;
-      });
 
     if (this.widgetId) {
       this.widgetService
